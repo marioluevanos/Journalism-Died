@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currents API News</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <h1>
+            <div class='news-title-text'>Currents <span>API</span> News</div>
+            <div class='news-loading'></div>
+        </h1>
+        <form id='news-form'>
+            <label for="select-categories" title="Select news category" class="news-select-label">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path>
+                </svg>
+                <select name="categories" id="select-categories">
+                    <option value="any">Category</option>
+                </select>
+            </label>
+            <label for="keywords" title="Search current events">
+                <input id="keywords" type="text" placeholder="Search" />
+            </label>
+            <button id="search-button">
+                <svg class='icon' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <title>Search</title>
+                    <line x1="22" y1="22" x2="18" y2="18"></line>
+                    <circle cx="10" cy="10" r="8"></circle>
+                    <path d="M6,10a4,4,0,0,1,4-4"></path>
+                </svg>
+            </button>
+        </form>
+    </header>
+    <aside class='news-filters'>
+        <button id="filter-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class='icon'>
+                <title>Filters</title>
+                <line x1="14" y1="4" x2="23" y2="4"></line>
+                <line x1="1" y1="4" x2="4" y2="4"></line>
+                <line x1="22" y1="12" x2="23" y2="12"></line>
+                <line x1="1" y1="12" x2="12" y2="12"></line>
+                <line x1="14" y1="20" x2="23" y2="20"></line>
+                <line x1="1" y1="20" x2="4" y2="20"></line>
+                <circle cx="7" cy="4" r="3"></circle>
+                <circle cx="15" cy="12" r="3"></circle>
+                <circle cx="7" cy="20" r="3"></circle>
+            </svg>
+        </button>
+        <fieldset class='filters' form='news-form'>
+            <legend>Filter Search</legend>
+            <div role='group'>
+                <label for="select-language">Language</label>
+                <select name="language" id="select-language">
+                    <option value="any">Any</option>
+                </select>
+            </div>
+            <div role='group'>
+                <label for="select-region">Region</label>
+                <select name="region" id="select-region">
+                    <option value="any">Any</option>
+                </select>
+            </div>
+            <legend>Select Date Range</legend>
+            <div role='group'>
+                <label for="select-date-start">Date Start</label>
+                <input type="date" name="datePicker" id="select-date-start" />
+            </div>
+            <div role='group'>
+                <label for="select-date-end">Date End</label>
+                <input type="date" name="datePicker" id="select-date-end" />
+            </div>
+            <button id='date-range-apply'>Apply Date Range</button>
+        </fieldset>
+    </aside>
+    <main id="news-results"></main>
+    <footer class='news-pagination'>
+        <button type='button' id='news-prev'>Prev Page</button>
+        <button type='button' id='news-next'>Next Page</button>
+        <div id='news-current-page'>1</div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="module" src="app.js"></script>
+</body>
+</html>
