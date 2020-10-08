@@ -1,9 +1,9 @@
 import { updatePageUI } from './update.js';
 import { fetchData } from './api.js';
 
-const prev = $('#news-prev');
-const next = $('#news-next');
-const current = $('#news-current-page');
+const prev = document.getElementById('news-prev');
+const next = document.getElementById('news-next');
+const current = document.getElementById('news-current-page');
 
 /**
  * Updates the pagination with page number and url
@@ -13,7 +13,7 @@ const current = $('#news-current-page');
 export function updatePagination(data, url) {
     
     // Set current page
-    current.text(data.page);
+    current.innerText = data.page;
 
     // Use RegEx to remove the page_number query param,
     // otehrwise it will interfear with url and have it twice
@@ -24,17 +24,17 @@ export function updatePagination(data, url) {
     // Prev Button
     const prevPage = data.page - 1;
     if (prevPage > 0) {
-        prev.attr('data-url', baseUrl);
-        prev.attr('data-page', prevPage);
-        prev.removeAttr('disabled');
+        prev.setAttribute('data-url', baseUrl);
+        prev.setAttribute('data-page', prevPage);
+        prev.removeAttribute('disabled');
     } else {
-        prev.attr('disabled', true);
+        prev.setAttribute('disabled', true);
     }
 
     // Next Button
     const nextPage = data.page + 1;
-    next.attr('data-page', nextPage);
-    next.attr('data-url', baseUrl);
+    next.setAttribute('data-page', nextPage);
+    next.setAttribute('data-url', baseUrl);
 }
 
 /**
@@ -48,5 +48,5 @@ async function paginatePage(event) {
     updatePageUI(data, newUrl)
 }
 
-next.on('click', paginatePage);
-prev.on('click', paginatePage);
+next.addEventListener('click', paginatePage);
+prev.addEventListener('click', paginatePage);

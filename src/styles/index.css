@@ -40,6 +40,56 @@ h1:hover {
     color: var(--color-primary);
 }
 
+
+/*
+    News Loading
+*/
+
+.news-loading {
+    width: 48px;
+    height: 48px;
+    position: absolute;
+    right: 5px;
+    top: 0px;
+    opacity: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.15s ease;
+    user-select: none;
+}
+
+.news-loading:after {
+    content: " ";
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--color-primary);
+    border-color: var(--color-primary) transparent var(--color-primary) transparent;
+    animation: ring-loading 1.2s linear infinite;
+}
+
+.news-loading:before {
+    content: " ";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 2px solid var(--color-primary);
+    border-color: var(--color-primary) transparent var(--color-primary) transparent;
+    animation: ring-loading 1.2s linear infinite;
+}
+
+@keyframes ring-loading {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 /* 
     Form
 */
@@ -109,7 +159,7 @@ label.news-select-label svg {
 }
 
 /* 
-    While Focused State 
+    Form While Focused State 
 */
 
 .is-focused #select-categories {
@@ -192,12 +242,12 @@ fieldset.filters {
     width: 100%;
 }
 
-fieldset.filters legend {
+fieldset.filters .group-title {
     font-size: smaller;
     color: black;
     font-weight: bold;
     margin: 0 0 5px;
-    padding: 20px 0 25px;
+    padding: 20px 0 20px;
     width: 100%;
     border-bottom: 1px solid lightgray;
 }
@@ -427,55 +477,26 @@ fieldset.filters select:focus {
 
 #news-results {
     padding: 30px calc(var(--ui-gutter) + var(--ui-filters-width)) 0 var(--ui-gutter);
+    transition: opacity 0.3s ease;
 }
 
-/*
-    News Loading
-*/
-
-.news-loading {
-    width: 48px;
-    height: 48px;
-    position: absolute;
-    right: 5px;
-    top: 0px;
-    opacity: 0;
+#news-results:empty {
+    min-height: 60vh;
+    justify-content: center;
     display: flex;
     align-items: center;
-    justify-content: center;
-    transition: opacity 0.15s ease;
-    user-select: none;
 }
 
-.news-loading:after {
-    content: " ";
-    position: absolute;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: 2px solid var(--color-primary);
-    border-color: var(--color-primary) transparent var(--color-primary) transparent;
-    animation: ring-loading 1.2s linear infinite;
+#news-results:empty::before {
+    text-align: center;
+    content: 'Slow news day? Nothing to show.';
+    font-size: 1em;
 }
 
-.news-loading:before {
-    content: " ";
-    position: absolute;
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
-    border: 2px solid var(--color-primary);
-    border-color: var(--color-primary) transparent var(--color-primary) transparent;
-    animation: ring-loading 1.2s linear infinite;
-}
-
-@keyframes ring-loading {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+#news-results[style] + .news-pagination,
+#news-results:empty + .news-pagination {
+    opacity: 0;
+    pointer-events: none;
 }
 
 /*
@@ -489,7 +510,7 @@ fieldset.filters select:focus {
     grid-template-columns: 1fr 1fr;
     grid-gap: 15px;
     padding: 30px calc(var(--ui-gutter) + var(--ui-filters-width)) 120px var(--ui-gutter);
-    transition: opacity 0.15s ease;
+    transition: opacity 0.3s ease;
 }
 
 .news-pagination button {
@@ -615,12 +636,9 @@ body.is-loading .news-pagination {
         right: 10px;
         box-shadow: 0 4px 8px rgba(0,0,0,0.15);
     }
-    fieldset.filters legend {
-        background: white;
-        padding: 0;
+    fieldset.filters .group-title {
+        padding: 15px 0;
         margin: 0;
-        position: absolute;
-        top: 15px;
     }
     fieldset.filters legend:nth-of-type(2) {
         display: none;
@@ -630,7 +648,7 @@ body.is-loading .news-pagination {
         left: 0;
         bottom: 0;
         background: white;
-        padding: 40px 10px 64px 10px;
+        padding: 0px 10px 64px 10px;
         z-index: -1;
         transition: all 0.3s ease;
         transform: translate3d(0, 100%, 0);

@@ -1,13 +1,13 @@
 import { updatePageUI } from './update.js';
 import { buildUrl, fetchData } from './api.js';
 
-const startDate = $('#select-date-start');
-const endDate = $('#select-date-end');
-const apply = $('#date-range-apply');
-const keywords = $("#keywords");
-const selectLanguage = $("#select-language");
-const selectRegion = $("#select-region");
-const selectCategories = $("#select-categories");
+const startDate = document.getElementById('select-date-start');
+const endDate = document.getElementById('select-date-end');
+const apply = document.getElementById('date-range-apply');
+const keywords = document.getElementById("keywords");
+const selectLanguage = document.getElementById("select-language");
+const selectRegion = document.getElementById("select-region");
+const selectCategories = document.getElementById("select-categories");
 
 /**
  * Initialize date change events
@@ -15,11 +15,11 @@ const selectCategories = $("#select-categories");
 export function initDateChange() {
 
     // Add event listeners and pass in an string ID to know which date picker is being picked
-    startDate.on('change', onChange.bind(null, 'startDate'));
-    endDate.on('change', onChange.bind(null, 'endDate'));
+    startDate.addEventListener('change', onChange.bind(null, 'startDate'));
+    endDate.addEventListener('change', onChange.bind(null, 'endDate'));
     
     // This event applies a new search with a specified date range
-    apply.on('click', onApply);
+    apply.addEventListener('click', onApply);
 
     // Start with undefined values
     let start;
@@ -43,10 +43,10 @@ export function initDateChange() {
         if(start && end) {
 
             const url = buildUrl({
-                keywordsVal: keywords.val(),
-                languageVal: selectLanguage.val(),
-                regionsVal: selectRegion.val(),
-                categoryVal: selectCategories.val(),
+                keywordsVal: keywords.value,
+                languageVal: selectLanguage.value,
+                regionsVal: selectRegion.value,
+                categoryVal: selectCategories.value,
                 startDateVal: start,
                 endDateVal: end
             });

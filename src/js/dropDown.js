@@ -5,12 +5,11 @@
  */
 export function appendDropDownOptions (selector, list) {
     
+    const el = document.querySelector(selector);
     // Check if the list is an Array (without named keys)
     if(list instanceof Array) {
-        list.forEach(function (item) {
-            $(selector).append(
-                `<option value=${ item }>${ toTitleCase(item) }</option>`
-            );
+        list.forEach((item) => {
+            el.innerHTML += `<option value=${ item }>${ toTitleCase(item) }</option>`;
         });
     } else {
         // If not an Array, then it's an Object with key, value pairs.
@@ -19,8 +18,8 @@ export function appendDropDownOptions (selector, list) {
         const entries = Object.entries(list);
 
         // Destructure the params within the arguments
-        entries.forEach(function ([key, value]) {
-            $(selector).append(`<option value=${ value }>${ toTitleCase(key) }</option>`);
+        entries.forEach(([key, value]) => {
+            el.innerHTML += `<option value=${ value }>${ toTitleCase(key) }</option>`;
         });
     }
 }

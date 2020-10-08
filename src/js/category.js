@@ -1,7 +1,7 @@
 import { updatePageUI } from './update.js';
 import { buildUrl, fetchData } from './api.js';
 
-const categories = $('#select-categories');
+const categories = document.getElementById('select-categories');
 
 /**
  * @param {Object} event
@@ -12,7 +12,7 @@ export async function onCategoryClick (event) {
     const data = await fetchData(url);
 
     // Update the category selector
-    categories.get(0).value = category;
+    categories.value = category;
 
     // Update the page results
     updatePageUI(data, url);   
@@ -23,7 +23,7 @@ export async function onCategoryClick (event) {
  */
 export function initCategoryChange () {
     
-    categories.on('change', onChange);
+    categories.addEventListener('change', onChange);
 
     async function onChange (event) {
         const category = event.target.value;

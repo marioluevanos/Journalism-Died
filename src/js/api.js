@@ -1,9 +1,7 @@
-export const BASE_URL = "https://api.currentsapi.services/v1";
-export const KEY = "7yVfJqcqsh1Mba0eBKq9X26k4D6eEnWLwt9bAgSkFyzB5xhH";
-// const KEY = "Y0A0tcFSmbc4rXn1aGlPFatuaRypY_iPszlJ_qM4AmTSCtnx"; // Old Key
-
-const domBody = $('body');
-const newsResults = $('#news-results');
+const BASE_URL = 'https://api.currentsapi.services/v1';
+const KEY = '7yVfJqcqsh1Mba0eBKq9X26k4D6eEnWLwt9bAgSkFyzB5xhH';
+const domBody = document.body;
+const newsResults = document.getElementById('news-results');
 
 /**
  * @param {String} url 
@@ -12,22 +10,31 @@ const newsResults = $('#news-results');
 export async function fetchData(url) {    
     let newsData;
 
-    // Add a loading screen
-    domBody.addClass('is-loading');
+    // Add loading class
+    domBody.classList.add('is-loading');
+
+    // if(localStorage.getItem(url)) {
+    //     newsData = JSON.parse(localStorage.getItem(url));
+
+    //     // Remove the loading screen
+    //     domBody.classList.remove('is-loading');
+    //     return newsData;
+    // }
 
     try {
         const response = await fetch(url);
-        if (response.ok) {
+        if(response.ok) {
             const data = await response.json();
             newsData = data;
+            // localStorage.setItem(url, JSON.stringify(data));
         } else {
-            newsResults.html('<h2 style="text-align: center">Something went wrong with the server.</h2>');
+            newsResults.innerHTML = '<h2 style="text-align: center">Something went wrong with the server.</h2>';
         }
     } catch(error) {
         console.error(error);
     }
-    // Remove the loading screen
-    domBody.removeClass('is-loading');
+    // Remove the loading class
+    domBody.classList.remove('is-loading');
     return newsData;
 }
 

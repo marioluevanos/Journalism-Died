@@ -1,14 +1,14 @@
 import { updatePageUI } from './update.js';
 import { buildUrl, fetchData } from './api.js';
 
-const language = $('#select-language');
+const language = document.getElementById('select-language');
 
 /**
  * Initialize the language change events
  */
 export function initLanguageChange() {
 
-    language.on('change', onChange);
+    language.addEventListener('change', onChange);
 
     async function onChange (event) {
         const language = event.target.value;
