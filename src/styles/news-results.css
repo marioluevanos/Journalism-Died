@@ -1,0 +1,46 @@
+/*
+    News Results
+*/
+
+#news-results {
+    padding: 30px calc(var(--ui-gutter) + var(--ui-filters-width)) 0 var(--ui-gutter);
+    transition: opacity 0.3s ease;
+}
+
+#news-results:empty {
+    min-height: 60vh;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+#news-results:empty::before {
+    text-align: center;
+    content: 'One moment please...';
+    font-size: 1em;
+}
+
+#news-results[style] + .news-pagination,
+#news-results:empty + .news-pagination {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/*
+    Active filters 
+*/
+
+.is-active-filters#news-results * {
+    pointer-events: none;
+}
+
+/*
+    Media Query
+*/
+
+@media only screen and (max-width: 767px) {
+    #news-results {
+        padding-top: 10px;
+        padding-right: 10px;
+    }
+}

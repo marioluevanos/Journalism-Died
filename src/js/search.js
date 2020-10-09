@@ -8,8 +8,6 @@ const selectLanguage = document.getElementById('select-language');
 const selectRegion = document.getElementById('select-region');
 const selectCategories = document.getElementById('select-categories');
 const searchForm = document.getElementById('news-form');
-const newsFilters = document.querySelector('.news-filters');
-const filterButton = document.getElementById('filter-button');
 const searchButton = document.getElementById('search-button');
 const startDate = document.getElementById('select-date-start');
 const endDate = document.getElementById('select-date-end');
@@ -20,7 +18,6 @@ const endDate = document.getElementById('select-date-end');
 export function initSearch () {
     keywords.addEventListener('focus', onSearchFocus);
     keywords.addEventListener('blur', onSearchBlur);
-    filterButton.addEventListener('click', toggleAsideFilters);
     searchButton.addEventListener("click", onSearchClick);
     newsTitleText.addEventListener('click', () => window.scrollTo({
         top: 0,
@@ -64,21 +61,4 @@ function onSearchFocus() {
 
 function onSearchBlur () {
     searchForm.classList.remove('is-focused');
-}
-
-/**
- * Toggles the aside filters, open and closes
- */
-function toggleAsideFilters() {
-    const closedValue = getComputedStyle(document.documentElement).getPropertyValue('--filter-width');
-    const openValue = '240px';
-    
-    // Toggle the class first
-    newsFilters.classList.toggle('active');
-
-    // Check if the filters aside should be open or closed
-    const asideWidth = newsFilters.classList.contains('active') ? openValue : closedValue;
-
-    // Then assign the value to the CSS variable
-    document.documentElement.style.setProperty('--ui-filters-width', asideWidth);
 }

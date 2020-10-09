@@ -13,20 +13,20 @@ export async function fetchData(url) {
     // Add loading class
     domBody.classList.add('is-loading');
 
-    // if(localStorage.getItem(url)) {
-    //     newsData = JSON.parse(localStorage.getItem(url));
+    if(localStorage.getItem(url)) {
+        newsData = JSON.parse(localStorage.getItem(url));
 
-    //     // Remove the loading screen
-    //     domBody.classList.remove('is-loading');
-    //     return newsData;
-    // }
+        // Remove the loading screen
+        domBody.classList.remove('is-loading');
+        return newsData;
+    }
 
     try {
         const response = await fetch(url);
         if(response.ok) {
             const data = await response.json();
             newsData = data;
-            // localStorage.setItem(url, JSON.stringify(data));
+            localStorage.setItem(url, JSON.stringify(data));
         } else {
             newsResults.innerHTML = '<h2 style="text-align: center">Something went wrong with the server.</h2>';
         }

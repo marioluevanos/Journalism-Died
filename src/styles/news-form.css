@@ -1,0 +1,90 @@
+#news-form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(100px, 160px) minmax(120px, auto) minmax(32px, 64px);
+    position: relative;
+    outline: none;
+}
+
+#news-form label {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+label.news-select-label svg {
+    position: absolute;
+    right: 6px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+#select-categories {
+    padding: 0 15px;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px 0 0 10px;
+    border: 1px solid lightgray;
+    background: var(--color-gray-light);
+    appearance: none;
+    outline: none;
+    position: relative;
+    left: 1px;
+    z-index: 1;
+}
+
+#select-categories:focus {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary);
+}
+
+#keywords {
+    padding: 15px;
+    background: white;
+    border: 1px solid lightgray;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    outline: none;
+}
+
+#search-button {
+    grid-column: 3/4;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    background: white;
+    border: 1px solid lightgray;
+    border-left: none;
+    color: black;
+    cursor: pointer;
+    border-radius: 0 10px 10px 0;
+    font-size: 0;
+    outline: none;
+}
+
+/* 
+    #news-form While Focused State 
+*/
+
+.is-focused #select-categories {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary);
+}
+
+.is-focused #keywords {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary);
+}
+
+.is-focused #search-button {
+    border-left-color: var(--color-primary);
+}
+
+.is-focused #search-button {
+    border-color: var(--color-primary);
+}
+
+.is-focused #search-button .icon {
+    stroke: var(--color-primary);
+}

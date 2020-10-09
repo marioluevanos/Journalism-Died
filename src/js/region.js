@@ -1,5 +1,6 @@
 import { updatePageUI } from './update.js';
 import { buildUrl, fetchData } from './api.js';
+import { closeAllFilters, updateTrayText } from './filters.js';
 
 const regions = document.getElementById('select-region');
 
@@ -18,5 +19,7 @@ export function initRegionChange() {
 
         // Update the page results
         updatePageUI(data, url);
+        updateTrayText({ region: event.target });
+        closeAllFilters();
     }
 }

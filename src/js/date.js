@@ -1,9 +1,10 @@
 import { updatePageUI } from './update.js';
 import { buildUrl, fetchData } from './api.js';
+import { closeAllFilters } from './filters.js';
 
 const startDate = document.getElementById('select-date-start');
 const endDate = document.getElementById('select-date-end');
-const apply = document.getElementById('date-range-apply');
+const apply = document.getElementById('filter-date-apply');
 const keywords = document.getElementById("keywords");
 const selectLanguage = document.getElementById("select-language");
 const selectRegion = document.getElementById("select-region");
@@ -55,6 +56,7 @@ export function initDateChange() {
 
             // Update the page results
             updatePageUI(data, url);
+            closeAllFilters();
         }
     }
 }

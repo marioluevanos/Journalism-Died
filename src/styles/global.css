@@ -1,0 +1,97 @@
+:root {
+    --color-gray-light: #eeeeee;
+    --color-primary: #0b78d0;
+    --color-primary-light: #eef4f9;
+    --ui-filters-width: 80px;
+    --ui-gutter: 5%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+header {
+    padding: 15px 15px 15px var(--ui-gutter);
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    top: 0;
+    position: sticky;
+    background: white;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+}
+
+h1 {
+    display: inline-flex;
+    align-items: center;
+    font: bold clamp(2vw, 24px, 5vw)/1 'Helvetica', Sans-serif;
+    position: relative;
+    cursor: pointer;
+    transition: color 0.15s ease;
+}
+
+h1:hover {
+    color: var(--color-primary);
+}
+
+/* 
+    Icons
+*/
+
+.icon {
+    stroke-width: 1;
+    stroke: black;
+    fill: none;
+    cursor: pointer;
+}
+
+.icon:hover {
+    stroke: var(--color-primary);
+}
+
+/*
+    Link Style
+*/
+
+.underline {
+    display: block;
+    text-decoration: none;
+    text-decoration: none;
+    display: inline;
+    background-image: linear-gradient(to bottom, black 0%, black 100%);
+    background-position: 100% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.3s ease 0s;
+}
+
+.underline:hover {
+    text-decoration: none;
+    background-position: 0 100%;
+    background-size: 100% 1px;
+    transition: background-size 0.3s ease 0s;
+}
+
+@media only screen and (max-width: 767px) {
+    :root {
+        --ui-gutter: 10px;
+    }
+    body {
+        background: #f2f2f2;
+    }
+    header {
+        grid-template-columns: 1fr;
+    }
+    .news-title-text {
+        display: none;
+    }
+    h1 {
+        position: static;
+    }
+}

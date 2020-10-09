@@ -1,0 +1,244 @@
+/* 
+    Filters
+*/
+.news-filters {
+    padding: 15px;
+    position: fixed;
+    top: 80px;
+    right: 0;
+    bottom: 0;
+    width: var(--ui-filters-width);
+    border-left: 1px solid lightgray;
+    display: flex;
+    z-index: 1;
+}
+
+#filter-button {
+    position: absolute;
+    right: 15px;
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: transparent;
+    border: 1px solid transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#filter-button:focus {
+    border: 1px solid var(--color-primary);
+}
+
+#filter-button:focus .icon {
+    stroke: var(--color-primary);
+}
+
+.filters-tray {
+    display: none;
+}
+
+.filters-tray-button * {
+    pointer-events: none;
+}
+
+fieldset.filters {
+    border: none;
+    display: none;
+    width: 100%;
+}
+
+fieldset.filters .group-title {
+    font-size: smaller;
+    color: black;
+    font-weight: bold;
+    margin: 0 0 5px;
+    padding: 20px 0 20px;
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+}
+fieldset.filters label {
+    display: flex;
+    align-items: center;
+    font-size: smaller;
+    margin: 10px 0 5px;
+    color: gray;
+}
+
+fieldset.filters .filter-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+}
+
+fieldset.filters .form-row {
+    justify-content: space-between;
+}
+
+input[type='date'] {
+    font-family: sans-serif;
+}
+
+fieldset.filters input,
+fieldset.filters select {
+    height: 40px;
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    outline: none;
+}
+
+fieldset.filters input:focus,
+fieldset.filters select:focus {
+    border-color: var(--color-primary);
+}
+
+.news-filters.active #filter-button {
+    background: var(--color-primary-light);
+}
+
+.news-filters.active fieldset.filters {
+    display: block;
+}
+
+#filter-date-apply {
+    margin-top: 15px;
+    padding: 15px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background: var(--color-primary-light);
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+#filter-date-apply:hover {
+     border: 1px solid var(--color-primary);
+     background: white;
+     color: var(--color-primary);
+ }
+
+/* 
+    Media Queries
+*/
+
+@media only screen and (max-width: 767px) {
+    .news-filters {
+        --ui-tray-height: 70px;
+        border-left: none;
+        background: lightgray;
+        top: initial;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: var(--ui-tray-height);
+        padding: 0;
+        display: block;
+    }
+    .filters-tray {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        height: inherit;
+        display: grid;
+        border-top: 1px solid lightgray;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    #filter-button {
+        display: none;
+    }
+    .filter-tray-button {
+        background: white;
+        border: none;
+        padding: 0;
+        outline: none;
+        font-size: x-small;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .filter-tray-button svg {
+        pointer-events: none;
+        margin-bottom: 5px;
+        stroke-width: 1;
+    }
+    .filter-tray-button svg .fill {
+        fill: black;
+        stroke: none;
+    }
+    .filter-tray-button svg .stroke {
+        fill: none;
+        stroke: black;
+    }
+
+    .filter-tray-button.active {
+        border-top: 1px solid var(--color-primary);
+        color: var(--color-primary);
+        background: var(--color-primary-light);
+    }
+
+    .filter-tray-button.active svg .fill {
+        fill: var(--color-primary);
+    }
+    .filter-tray-button.active svg .stroke {
+        stroke: var(--color-primary);
+    } 
+    .filter-tray-button .tray-text {
+        pointer-events: none;
+    }
+    fieldset.filters {
+        position: static;
+        left: 0;
+        bottom: 0;
+        padding: 0;
+        display: block;
+        height: inherit;
+    }
+    .group-title {
+        display: none;
+    }
+    fieldset.filters .filter-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        left: 0;
+        right: 0;
+        width: 100vw;
+        height: 15vh;
+        background: white;
+        bottom: var(--ui-tray-height);
+        padding: 10px;
+        z-index: -1;
+        display: none;
+        grid-template-columns: 80px calc(100% - 80px);
+        box-shadow: 0 -10px 50px rgba(0,0,0, 0.33);
+    }
+    fieldset.filters .filter-group[data-name='date'] {
+        height: 25vh;
+    }
+    fieldset.filters label {
+        margin: 0;
+    }
+    fieldset.filters .filter-group.active {
+        display: grid;
+    }
+    fieldset.filters input, 
+    fieldset.filters select {
+        width: 100%;
+    }
+    #filter-date-apply {
+        margin-top: 0;
+        width: 100%;
+        grid-column: span 2;
+    }
+}

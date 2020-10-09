@@ -5,6 +5,7 @@ import { initCategoryChange } from './category.js';
 import { initLanguageChange } from './language.js';
 import { initRegionChange } from './region.js';
 import { initDateChange } from './date.js';
+import { initFilters } from './filters.js';
 
 /**
  * Initializes data for (categories, region, lang) which will occupy dropdowns
@@ -39,6 +40,7 @@ async function startApp () {
 
     // Initialize the search modules and filters
     initSearch();
+    initFilters();
     initCategoryChange();
     initLanguageChange();
     initRegionChange();

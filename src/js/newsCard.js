@@ -13,6 +13,7 @@ export function createNewsCard (data) {
     if (hasImage) {
         const newsImage = createNewsImage(data);
         news.appendChild(newsImage);
+        news.classList.add('has-image');
     }
 
     news.classList.add('news');
@@ -91,7 +92,6 @@ function createNewsText ({
         const newsHeadline = create('div');
         const newsDetails = create('div');
         
-        newsText.classList.add('full-width');
         newsHeadline.classList.add('news-headline');
         newsDetails.classList.add('news-details');
 
@@ -114,7 +114,7 @@ function createNewsText ({
     return newsText;
 }
 
-function createNewsMeta (categories, published) {
+function createNewsMeta (categoriesList, published) {
     const newsMeta = create('div');
     const newsCategory = create('div');
     const separator = create('span');
@@ -129,29 +129,29 @@ function createNewsMeta (categories, published) {
 
     separator.innerText = '•';
     newsPubDate.innerText = pubDate;    
-    
+
     // Remove categories that are not in the dropdown
-    categories.filter((cat) => {
-        if (window.currentsAPI.categories.includes(cat)) {
-            return cat;
+    const filteredCat = categoriesList.filter((catText) => {
+        if (window.currentsAPI.categories.includes(catText)) {
+            return catText;
         }
-    })
+    });
 
     // Create categories elemenes for each category and attach a click event listener
-    .map((cat) => {
-        const category = create('span');
-        category.innerHTML += `${cat}`;
-        category.setAttribute('data-category', cat);
-        category.classList.add('news-category');
-        category.classList.add('underline');
+    filteredCat.map((catText) => {
+        const category = create('a');
+        category.innerText = `${catText}`;
+        category.setAttribute('data-category', catText);
+        category.setAttribute('href', '#');
+        category.classList.add('news-category', 'underline');
         category.addEventListener('click', onCategoryClick);
         return category;
     })
 
     // After creating category elements, append them to the newsCategory parent element
-    .forEach((categoryEl, idx) => {
-        newsCategory.appendChild(categoryEl);
-        const lastEl = categories.length - 1 === idx;
+    .forEach((category, idx) => {
+        newsCategory.appendChild(category);
+        const lastEl = categoriesList.length - 1 === idx;
         if(!lastEl) {
             newsCategory.innerHTML += `<span class="separator">•</span>`;
         }

@@ -1,8 +1,8 @@
 import { updatePageUI } from './update.js';
 import { buildUrl, fetchData } from './api.js';
+import { closeAllFilters, updateTrayText } from './filters.js';
 
 const language = document.getElementById('select-language');
-
 /**
  * Initialize the language change events
  */
@@ -17,5 +17,7 @@ export function initLanguageChange() {
 
         // Update the page results
         updatePageUI(data, url);
+        updateTrayText({ language: event.target });
+        closeAllFilters();
     }
 }

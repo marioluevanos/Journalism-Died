@@ -7,6 +7,7 @@ const categories = document.getElementById('select-categories');
  * @param {Object} event
  */
 export async function onCategoryClick (event) {
+    event.preventDefault();
     const { category } = event.target.dataset;
     const url = buildUrl({ categoryVal: category });
     const data = await fetchData(url);

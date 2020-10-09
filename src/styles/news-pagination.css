@@ -1,0 +1,75 @@
+/*
+    Pagination
+*/
+
+.news-pagination {
+    width: 100%;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15px;
+    padding: 30px calc(var(--ui-gutter) + var(--ui-filters-width)) 120px var(--ui-gutter);
+    transition: opacity 0.3s ease;
+}
+
+.news-pagination button {
+    flex: 1;
+    padding: 15px 40px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background: var(--color-primary-light);
+    color: black;
+    cursor: pointer;
+    outline: none;
+}
+
+.news-pagination button:first-child {
+    margin-right: 5px;
+}
+
+.news-pagination button:last-child {
+    margin-left: 5px;
+}
+
+.news-pagination button:not([disabled]):hover {
+    background: var(--color-primary-light);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.news-pagination button[disabled] {
+    background: transparent;
+    border: 1px dotted lightgray;
+    color: lightgray;
+    cursor: default;
+}
+
+#news-current-page {
+    overflow: hidden;
+    padding: 15px;
+    color: gray;
+    grid-column: span 2;
+    text-align: center;
+}
+
+#news-current-page::before {
+    content: "Page ";
+}
+
+/*
+    Whhile Page is Loading
+*/
+
+body.is-loading .news-pagination {
+    opacity: 0;
+}
+
+/*
+    Media Query
+*/
+
+@media only screen and (max-width: 767px) {
+    .news-pagination {
+        padding: 10px
+    }
+}
