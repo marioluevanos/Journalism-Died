@@ -1,9 +1,10 @@
 :root {
     --color-gray-light: #eeeeee;
     --color-primary: #0b78d0;
-    --color-primary-light: #eef4f9;
+    --color-primary-light: #dce6ef;
     --ui-filters-width: 80px;
     --ui-gutter: 5%;
+    --ui-tray-height: 70px;
 }
 
 * {
