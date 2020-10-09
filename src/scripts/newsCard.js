@@ -29,6 +29,7 @@ function createNewsImage ({ url, image, title }) {
     newsImage.classList.add('news-image');
     newsPicture.setAttribute('src', image);
     newsPicture.setAttribute('alt', title);
+    newsPicture.setAttribute('loading', 'lazy');
     
     newsLink.appendChild(newsPicture);
     newsImage.appendChild(newsLink);

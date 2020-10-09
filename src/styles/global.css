@@ -27,6 +27,10 @@ body {
     background: var(--color-body);
 }
 
+a {
+    color: var(--color-primary);
+}
+
 header {
     top: 0;
     position: sticky;
