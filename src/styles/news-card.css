@@ -8,7 +8,6 @@
     padding-bottom: 30px;
     border-bottom: 1px solid var(--color-border-ui);
     position: relative;
-    overflow: hidden;
 }
 
 .news-image {
@@ -161,6 +160,8 @@
 .news-link svg {
     stroke: var(--color-primary);
     margin-left: 5px;
+    width: 12px;
+    height: 12px;
 }
 
 .news-footer .news-link {
@@ -216,6 +217,12 @@
     .news.has-image:nth-child(n + 3) .news-meta,
     .news.has-image:nth-child(n + 3) .news-footer {
         font-size: x-small;
+    }
+    .news.has-image:nth-child(n + 3) .news-category:nth-of-type(n + 2) {
+        display: none;
+    }
+    .news.has-image:nth-child(n + 3) .news-category:nth-of-type(n + 1) + .separator {
+        display: none;
     }
     .news.has-image:nth-child(n + 3) .news-title {
         font-size: 1em;

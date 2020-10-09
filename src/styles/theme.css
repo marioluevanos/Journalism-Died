@@ -13,8 +13,8 @@
 }
 
 .is-dark-mode:root {
-    --color-text: hsl(210, 20%, 70%);
-    --color-text-light: hsl(210, 15%, 50%);
+    --color-text: hsl(210, 30%, 85%);
+    --color-text-light: hsl(210, 25%, 70%);
     --color-body: hsl(210, 10%, 9%);
     --color-body-dim: hsl(210, 10%, 5%);
     --color-border-ui: hsl(210, 15%, 20%);
