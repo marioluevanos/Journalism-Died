@@ -2,7 +2,7 @@ import { fetchData, buildUrl } from './api.js';
 import { updatePageUI } from './update.js';
 
 // Cache Elements
-const newsTitleText = document.querySelector('.news-title-text');
+const newsTitle = document.querySelector('h1');
 const keywords = document.getElementById('keywords');
 const selectLanguage = document.getElementById('select-language');
 const selectRegion = document.getElementById('select-region');
@@ -19,7 +19,7 @@ export function initSearch () {
     keywords.addEventListener('focus', onSearchFocus);
     keywords.addEventListener('blur', onSearchBlur);
     searchButton.addEventListener("click", onSearchClick);
-    newsTitleText.addEventListener('click', () => window.scrollTo({
+    newsTitle.addEventListener('click', () => window.scrollTo({
         top: 0,
         behavior: 'smooth'
     }));

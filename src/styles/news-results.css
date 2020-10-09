@@ -30,6 +30,11 @@
     Active filters 
 */
 
+.is-active-filters#news-results {
+    filter: blur(3px);
+    opacity: 0.6;
+}
+
 .is-active-filters#news-results * {
     pointer-events: none;
 }

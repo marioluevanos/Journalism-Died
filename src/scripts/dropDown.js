@@ -8,7 +8,7 @@ export function appendDropDownOptions (selector, list) {
     const el = document.querySelector(selector);
     // Check if the list is an Array (without named keys)
     if(list instanceof Array) {
-        list.forEach((item) => {
+        sortAlphabetically(list).forEach((item) => {
             el.innerHTML += `<option value=${ item }>${ toTitleCase(item) }</option>`;
         });
     } else {
@@ -35,4 +35,8 @@ function toTitleCase (text = '') {
         .map(word => word.replace(/\w{1}/, match => match.toUpperCase()))
         // join array words with space into string
         .join(' ')
+}
+
+function sortAlphabetically (list) {
+    return list.sort((a, b) => b.toUpperCase() < a.toUpperCase() ? 1 : -1);
 }

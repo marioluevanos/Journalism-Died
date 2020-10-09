@@ -13,7 +13,7 @@
 .news-image {
     width: 50%;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: var(--ui-radius);
 }
 
 .news-image img {
@@ -114,6 +114,7 @@
 }
 
 .news-title {
+    font-weight: 700;
     margin-bottom: 10px;
 }
 

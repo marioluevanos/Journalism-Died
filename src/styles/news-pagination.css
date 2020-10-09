@@ -16,7 +16,7 @@
     flex: 1;
     padding: 15px 40px;
     border: 1px solid transparent;
-    border-radius: 10px;
+    border-radius: var(--ui-radius);
     background: var(--color-primary-light);
     color: var(--color-text);
     cursor: pointer;

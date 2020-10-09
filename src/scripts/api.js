@@ -2,6 +2,7 @@ const BASE_URL = 'https://api.currentsapi.services/v1';
 const KEY = '7yVfJqcqsh1Mba0eBKq9X26k4D6eEnWLwt9bAgSkFyzB5xhH';
 const domBody = document.body;
 const newsResults = document.getElementById('news-results');
+const isDev = window.location.hostname === '127.0.0.1';
 
 /**
  * @param {String} url 
@@ -13,20 +14,22 @@ export async function fetchData(url) {
     // Add loading class
     domBody.classList.add('is-loading');
 
-    // if(localStorage.getItem(url)) {
-    //     newsData = JSON.parse(localStorage.getItem(url));
-
-    //     // Remove the loading screen
-    //     domBody.classList.remove('is-loading');
-    //     return newsData;
-    // }
+    if(isDev) {
+        if(localStorage.getItem(url)) {
+            newsData = JSON.parse(localStorage.getItem(url));
+            
+            // Remove the loading screen
+            domBody.classList.remove('is-loading');
+            return newsData;
+        }
+    }
 
     try {
         const response = await fetch(url);
         if(response.ok) {
             const data = await response.json();
             newsData = data;
-            // localStorage.setItem(url, JSON.stringify(data));
+            if (isDev) localStorage.setItem(url, JSON.stringify(data));
         } else {
             newsResults.innerHTML = '<h2 style="text-align: center">Something went wrong with the server.</h2>';
         }

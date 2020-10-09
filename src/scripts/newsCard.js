@@ -58,7 +58,7 @@ function createNewsFooter({ author, url }) {
         newsFooter.appendChild(newsAuthor);
     }
 
-    newsLink.innerHTML = `Read Full Story ${icon}`;
+    newsLink.innerHTML = `Full Story ${icon}`;
     newsLink.classList.add('underline');
     newsFooter.classList.add('news-footer');
     newsFooter.appendChild(newsLink);

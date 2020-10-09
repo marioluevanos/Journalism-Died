@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap');
+
 :root {
     --color-text: black;
     --color-body: white;
@@ -8,6 +10,7 @@
 
     --ui-filters-width: 80px;
     --ui-gutter: 5%;
+    --ui-radius: 6px;
     --ui-tray-height: 70px;
 }
 
@@ -18,7 +21,8 @@
 }
 
 body {
-    font-family: sans-serif;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
     color: var(--color-text);
     background: var(--color-body);
 }
@@ -38,10 +42,10 @@ header {
 h1 {
     display: inline-flex;
     align-items: center;
-    font: bold clamp(2vw, 24px, 5vw)/1 'Helvetica', Sans-serif;
+    font-size: clamp(2vw, 24px, 5vw);
+    line-height: 1;
     position: relative;
     cursor: pointer;
-    transition: color 0.15s ease;
 }
 
 h1:hover {
@@ -118,10 +122,7 @@ svg.icon .stroke {
     header {
         grid-template-columns: 1fr;
     }
-    .news-title-text {
-        display: none;
-    }
     h1 {
-        position: static;
+        display: none;
     }
 }

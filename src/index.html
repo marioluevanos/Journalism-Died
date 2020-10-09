@@ -10,10 +10,7 @@
 </head>
 <body>
     <header>
-        <h1>
-            <div class='news-title-text'>Currents <span>API</span> News</div>
-            <div class='news-loading'></div>
-        </h1>
+        <h1>Currents API News</h1>
         <form id='news-form'>
             <label for="select-categories" title="Select news category" class="news-select-label">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon">
@@ -27,6 +24,7 @@
                 <input id="keywords" type="text" placeholder="Search" />
             </label>
             <button id="search-button">
+                <div class='news-loading'></div>
                 <svg class='icon' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon">
                     <title>Search</title>
                     <line class="stroke" x1="22" y1="22" x2="18" y2="18"></line>

@@ -20,7 +20,7 @@
     right: 15px;
     width: 48px;
     height: 48px;
-    border-radius: 10px;
+    border-radius: var(--ui-radius);
     background: transparent;
     border: 1px solid transparent;
     border: none;
@@ -133,7 +133,7 @@ fieldset.filters select {
     color: var(--color-text);
     background: var(--color-body);
     border: 1px solid var(--color-border-ui);
-    border-radius: 10px;
+    border-radius: var(--ui-radius);
     outline: none;
 }
 
@@ -154,7 +154,7 @@ fieldset.filters select:focus {
     margin-top: 15px;
     padding: 15px;
     width: 100%;
-    border-radius: 10px;
+    border-radius: var(--ui-radius);
     border: 1px solid transparent;
     background: var(--color-primary-light);
     color: var(--color-text);
@@ -286,7 +286,7 @@ fieldset.filters select:focus {
         height: 15vh;
         background: var(--color-body-dim);
         bottom: var(--ui-tray-height);
-        padding: 10px;
+        padding: var(--ui-gutter);
         z-index: -1;
         display: none;
         grid-template-columns: 80px calc(100% - 80px);

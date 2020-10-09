@@ -3,17 +3,18 @@
 */
 
 .news-loading {
-    width: 48px;
-    height: 48px;
+    width: 32px;
+    height: 32px;
     position: absolute;
-    right: 5px;
-    top: 0px;
     opacity: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: opacity 0.15s ease;
     user-select: none;
+    background: var(--color-body);
+    pointer-events: none;
+    z-index: 1;
 }
 
 .news-loading:after {
@@ -59,14 +60,9 @@ body.is-loading .news-loading {
     Media Queries
 */
 
-@media only screen and (max-width: 767px) {   
+/* @media only screen and (max-width: 767px) {   
     .news-loading {
         width: 32px;
         height: 32px;
-        right: 32px;
-        top: 22px;
-        background: var(--color-body);
-        pointer-events: none;
-        z-index: 1;
     }
-}
+} */
