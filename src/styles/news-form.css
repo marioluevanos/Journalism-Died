@@ -24,8 +24,9 @@ label.news-select-label svg {
     width: 100%;
     height: 100%;
     border-radius: 10px 0 0 10px;
-    border: 1px solid lightgray;
-    background: var(--color-gray-light);
+    border: 1px solid var(--color-border-ui);
+    background: var(--color-body);
+    color: var(--color-text);
     appearance: none;
     outline: none;
     position: relative;
@@ -40,8 +41,7 @@ label.news-select-label svg {
 
 #keywords {
     padding: 15px;
-    background: white;
-    border: 1px solid lightgray;
+    border: 1px solid var(--color-border-ui);
     width: 100%;
     height: 100%;
     border-radius: 0;
@@ -53,10 +53,10 @@ label.news-select-label svg {
     width: 100%;
     height: 100%;
     padding: 10px;
-    background: white;
-    border: 1px solid lightgray;
+    background: var(--color-body);
+    border: 1px solid var(--color-border-ui);
     border-left: none;
-    color: black;
+    color: var(--color-text);
     cursor: pointer;
     border-radius: 0 10px 10px 0;
     font-size: 0;

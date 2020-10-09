@@ -1,7 +1,11 @@
 :root {
-    --color-gray-light: #eeeeee;
+    --color-text: black;
+    --color-body: white;
+    --color-text-light: gray;
+    --color-border-ui: lightgray;
     --color-primary: #0b78d0;
     --color-primary-light: #dce6ef;
+
     --ui-filters-width: 80px;
     --ui-gutter: 5%;
     --ui-tray-height: 70px;
@@ -15,16 +19,19 @@
 
 body {
     font-family: sans-serif;
+    color: var(--color-text);
+    background: var(--color-body);
 }
 
 header {
+    top: 0;
+    position: sticky;
+    color: var(--color-text);
+    background: var(--color-body);
     padding: 15px 15px 15px var(--ui-gutter);
     display: grid;
     grid-template-columns: 0.5fr 1fr;
-    top: 0;
-    position: sticky;
-    background: white;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    border-bottom: 1px solid var(--color-border-ui);
     z-index: 10;
 }
 
@@ -41,19 +48,41 @@ h1:hover {
     color: var(--color-primary);
 }
 
+input,
+input::placeholder,
+input:placeholder-shown {
+    color: var(--color-text);
+    background: var(--color-body-dim);
+}
+
+input:-webkit-autofill {
+    background: var(--color-body-dim);
+    -webkit-text-fill-color: var(--color-text);
+    -webkit-box-shadow: 0 0 0 2000px var(--color-body-dim) inset;
+    box-shadow: 0 0 0 2000px var(--color-body-dim) inset;
+} 
+
 /* 
     Icons
 */
 
-.icon {
-    stroke-width: 1;
-    stroke: black;
-    fill: none;
-    cursor: pointer;
-}
-
 .icon:hover {
     stroke: var(--color-primary);
+}
+
+svg.icon {
+    pointer-events: none;
+    stroke-width: 1;
+}
+
+svg.icon .fill {
+    fill: var(--color-text);
+    stroke: none;
+}
+
+svg.icon .stroke {
+    fill: none;
+    stroke: var(--color-text);
 }
 
 /*
@@ -84,7 +113,7 @@ h1:hover {
         --ui-gutter: 10px;
     }
     body {
-        background: #f2f2f2;
+        background: var(--color-body-dim);
     }
     header {
         grid-template-columns: 1fr;

@@ -8,8 +8,10 @@
     right: 0;
     bottom: 0;
     width: var(--ui-filters-width);
-    border-left: 1px solid lightgray;
+    border-left: 1px solid var(--color-border-ui);
     display: flex;
+    flex-direction: column;
+    align-items: center;
     z-index: 1;
 }
 
@@ -38,6 +40,48 @@
     display: none;
 }
 
+.filter-tray-button {
+    width: 100%;
+    background: var(--color-body);
+    color: var(--color-text);
+    border: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    font-size: x-small;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.filter-tray-button svg {
+    pointer-events: none;
+    margin-bottom: 5px;
+}
+
+/*
+    Active State
+*/
+
+.filter-tray-button.active {
+    border-top: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    background: var(--color-primary-light);
+}
+
+.filter-tray-button.active svg .fill {
+    fill: var(--color-primary);
+}
+
+.filter-tray-button.active svg .stroke {
+    stroke: var(--color-primary);
+}
+
+.filter-tray-button .tray-text {
+    pointer-events: none;
+}
+
 .filters-tray-button * {
     pointer-events: none;
 }
@@ -50,19 +94,19 @@ fieldset.filters {
 
 fieldset.filters .group-title {
     font-size: smaller;
-    color: black;
+    color: var(--color-text);
     font-weight: bold;
     margin: 0 0 5px;
     padding: 20px 0 20px;
     width: 100%;
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid var(--color-border-ui);
 }
 fieldset.filters label {
     display: flex;
     align-items: center;
     font-size: smaller;
     margin: 10px 0 5px;
-    color: gray;
+    color: var(--color-text-light);
 }
 
 fieldset.filters .filter-group {
@@ -86,7 +130,9 @@ fieldset.filters select {
     padding: 0 5px;
     display: flex;
     align-items: center;
-    border: 1px solid lightgray;
+    color: var(--color-text);
+    background: var(--color-body);
+    border: 1px solid var(--color-border-ui);
     border-radius: 10px;
     outline: none;
 }
@@ -111,6 +157,7 @@ fieldset.filters select:focus {
     border-radius: 10px;
     border: 1px solid transparent;
     background: var(--color-primary-light);
+    color: var(--color-text);
     appearance: none;
     outline: none;
     cursor: pointer;
@@ -119,9 +166,72 @@ fieldset.filters select:focus {
 
 #filter-date-apply:hover {
      border: 1px solid var(--color-primary);
-     background: white;
+     background: var(--color-body);
      color: var(--color-primary);
  }
+
+#select-theme {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+}
+
+#select-theme + label {
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    background: var(--color-primary-light);
+    margin: 10px auto 0;
+    display: flex;
+    align-items: center;
+    border-radius: 100px;
+    position: relative;
+}
+
+#select-theme + label:after {
+    content: '';
+    background: var(--color-primary);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    position: absolute;
+    top: 5px;
+    left: 4px;
+    transition: cubic-bezier(0.785, 0.135, 0.15, 0.86) 320ms;
+}
+
+#select-theme + label:before {
+    content: 'Dark';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 15px;
+    right: 15px;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 1;
+}
+
+#select-theme:checked + label {
+    background: var(--color-primary-light);
+}
+
+#select-theme:checked + label:after {
+    left: calc(100% - 5px);
+    transform: translate3d(-100%, 0, 0);
+}
+
+#select-theme + label:before {
+    content: 'Day';
+    justify-content: flex-end;
+}
+
+#select-theme:checked + label:before {
+    content: 'Night';
+    justify-content: flex-start;
+}
 
 /* 
     Media Queries
@@ -129,9 +239,8 @@ fieldset.filters select:focus {
 
 @media only screen and (max-width: 767px) {
     .news-filters {
-        --ui-tray-height: 70px;
         border-left: none;
-        background: lightgray;
+        background: var(--color-border-ui);
         top: initial;
         bottom: 0;
         left: 0;
@@ -149,51 +258,11 @@ fieldset.filters select:focus {
         width: 100vw;
         height: inherit;
         display: grid;
-        border-top: 1px solid lightgray;
+        border-top: 1px solid var(--color-border-ui);
         grid-template-columns: repeat(3, 1fr);
     }
     #filter-button {
         display: none;
-    }
-    .filter-tray-button {
-        background: white;
-        border: none;
-        padding: 0;
-        outline: none;
-        font-size: x-small;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .filter-tray-button svg {
-        pointer-events: none;
-        margin-bottom: 5px;
-        stroke-width: 1;
-    }
-    .filter-tray-button svg .fill {
-        fill: black;
-        stroke: none;
-    }
-    .filter-tray-button svg .stroke {
-        fill: none;
-        stroke: black;
-    }
-
-    .filter-tray-button.active {
-        border-top: 1px solid var(--color-primary);
-        color: var(--color-primary);
-        background: var(--color-primary-light);
-    }
-
-    .filter-tray-button.active svg .fill {
-        fill: var(--color-primary);
-    }
-    .filter-tray-button.active svg .stroke {
-        stroke: var(--color-primary);
-    } 
-    .filter-tray-button .tray-text {
-        pointer-events: none;
     }
     fieldset.filters {
         position: static;
@@ -215,7 +284,7 @@ fieldset.filters select:focus {
         right: 0;
         width: 100vw;
         height: 15vh;
-        background: white;
+        background: var(--color-body-dim);
         bottom: var(--ui-tray-height);
         padding: 10px;
         z-index: -1;
@@ -223,8 +292,14 @@ fieldset.filters select:focus {
         grid-template-columns: 80px calc(100% - 80px);
         box-shadow: 0 -10px 50px rgba(0,0,0, 0.33);
     }
-    fieldset.filters .filter-group[data-name='date'] {
-        height: 25vh;
+    fieldset.filters .filter-group[data-name='more'] {
+        height: 60vh;
+    }
+    fieldset.filters .filter-group[data-name='more'] .group-title {
+        display: block;
+        grid-column: span 2;
+        padding: 10px 0;
+        margin: 0;
     }
     fieldset.filters label {
         margin: 0;
@@ -240,5 +315,15 @@ fieldset.filters select:focus {
         margin-top: 0;
         width: 100%;
         grid-column: span 2;
+    }
+    fieldset.filters #select-theme {
+        margin: 0;
+        padding: 0;
+        grid-column: span 2;
+        display: none;
+    }
+    fieldset.filters #select-theme + label {
+        grid-column: span 2;
+        margin: 0;
     }
 }

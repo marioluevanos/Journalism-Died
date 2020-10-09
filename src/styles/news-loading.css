@@ -65,7 +65,7 @@ body.is-loading .news-loading {
         height: 32px;
         right: 32px;
         top: 22px;
-        background: white;
+        background: var(--color-body);
         pointer-events: none;
         z-index: 1;
     }

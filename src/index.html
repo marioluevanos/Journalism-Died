@@ -16,8 +16,8 @@
         </h1>
         <form id='news-form'>
             <label for="select-categories" title="Select news category" class="news-select-label">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                    <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon">
+                    <path class="fill" d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path>
                 </svg>
                 <select name="categories" id="select-categories">
                     <option value="any">Any</option>
@@ -27,33 +27,33 @@
                 <input id="keywords" type="text" placeholder="Search" />
             </label>
             <button id="search-button">
-                <svg class='icon' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <svg class='icon' xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon">
                     <title>Search</title>
-                    <line x1="22" y1="22" x2="18" y2="18"></line>
-                    <circle cx="10" cy="10" r="8"></circle>
-                    <path d="M6,10a4,4,0,0,1,4-4"></path>
+                    <line class="stroke" x1="22" y1="22" x2="18" y2="18"></line>
+                    <circle class="stroke" cx="10" cy="10" r="8"></circle>
+                    <path class="stroke" d="M6,10a4,4,0,0,1,4-4"></path>
                 </svg>
             </button>
         </form>
     </header>
     <aside class='news-filters'>
         <button id="filter-button">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class='icon'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon">
                 <title>Filters</title>
-                <line x1="14" y1="4" x2="23" y2="4"></line>
-                <line x1="1" y1="4" x2="4" y2="4"></line>
-                <line x1="22" y1="12" x2="23" y2="12"></line>
-                <line x1="1" y1="12" x2="12" y2="12"></line>
-                <line x1="14" y1="20" x2="23" y2="20"></line>
-                <line x1="1" y1="20" x2="4" y2="20"></line>
-                <circle cx="7" cy="4" r="3"></circle>
-                <circle cx="15" cy="12" r="3"></circle>
-                <circle cx="7" cy="20" r="3"></circle>
+                <line class="stroke" x1="14" y1="4" x2="23" y2="4"></line>
+                <line class="stroke" x1="1" y1="4" x2="4" y2="4"></line>
+                <line class="stroke" x1="22" y1="12" x2="23" y2="12"></line>
+                <line class="stroke" x1="1" y1="12" x2="12" y2="12"></line>
+                <line class="stroke" x1="14" y1="20" x2="23" y2="20"></line>
+                <line class="stroke" x1="1" y1="20" x2="4" y2="20"></line>
+                <circle class="stroke" cx="7" cy="4" r="3"></circle>
+                <circle class="stroke" cx="15" cy="12" r="3"></circle>
+                <circle class="stroke" cx="7" cy="20" r="3"></circle>
             </svg>
         </button>
         <div class='filters-tray'>
             <button class='filter-tray-button' data-name='language'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon">
                     <path class='stroke' d="M13,6V2.773A1.773,1.773,0,0,0,11.227,1H2.773A1.773,1.773,0,0,0,1,2.773v7.454A1.773,1.773,0,0,0,2.773,12H3v2l3-2H8"></path>
                     <path class='stroke' d="M21.286,9H12.714A1.777,1.777,0,0,0,11,10.833v7.334A1.777,1.777,0,0,0,12.714,20H18l3,2V20h.286A1.777,1.777,0,0,0,23,18.167V10.833A1.777,1.777,0,0,0,21.286,9Z"></path>
                     <path class="fill" d="M10.287,5.113c-.308-.028-.581-.042-1-.042a5.525,5.525,0,0,1-.476,1.352,5.162,5.162,0,0,1-.777,1.134,6.742,6.742,0,0,0,2.4.848,4.493,4.493,0,0,0-.693,1.288A8.641,8.641,0,0,1,7.079,8.418a8.993,8.993,0,0,1-2.787,1.29,4.065,4.065,0,0,0-.673-1.24A7.639,7.639,0,0,0,6.105,7.55a6.126,6.126,0,0,1-.9-1.281,6.185,6.185,0,0,1-.483-1.2c-.413,0-.652.014-1,.042V3.845a8.644,8.644,0,0,0,1.016.049H6.28v-.42a2.056,2.056,0,0,0-.042-.434H7.646a2.155,2.155,0,0,0-.042.427v.427H9.271a8.576,8.576,0,0,0,1.016-.049ZM6.063,5.071a4.006,4.006,0,0,0,.981,1.7,3.96,3.96,0,0,0,.875-1.7Z"></path>
@@ -62,7 +62,7 @@
                 <span class='tray-text'>Language</span>
             </button>
             <button class='filter-tray-button' data-name='region'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon">
                     <path class="stroke" d="M12,23c-1.958-1.583-2.083-6.792,1-8 c1.636-0.641,2.166,2.937,5.375,2.042c0.621-0.173,2.083,0.708,1.551,2.052"></path>
                     <path class="stroke" d="M6.294,4.787 c0.631,0.466,1.124,1.071,1.589,1.849c0.405,0.679,1.306,2.57,0.481,3.638C7.43,11.48,4.727,11.887,4.727,13 c0,0.837,1.185,1.793,1.818,2.727c0.952,1.405,0.519,2.767,0,3.636c-0.269,0.451-0.727,0.811-1.203,1.097"></path>
                     <path class="stroke" d="M21.8,11c0.131,0.646,0.2,1.315,0.2,2 c0,5.523-4.477,10-10,10S2,18.523,2,13S6.477,3,12,3c0.494,0,0.98,0.036,1.455,0.105"></path>
@@ -70,29 +70,18 @@
                 </svg>
                 <span class='tray-text'>Region</span>
             </button>
-            <button class='filter-tray-button' data-name='date'>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <rect class="stroke" x="5" y="12" width="2" height="1"></rect>
-                        <rect class="stroke" x="11" y="12" width="2" height="1"></rect>
-                        <rect class="stroke" x="5" y="17" width="2" height="1"></rect>
-                        <rect class="stroke" x="11" y="17" width="2" height="1"></rect>
-                        <rect class="stroke" x="17" y="12" width="2" height="1"></rect>
-                        <rect class="fill" x="5" y="12" width="2" height="1"></rect>
-                        <rect class="fill" x="11" y="12" width="2" height="1"></rect>
-                        <rect class="fill" x="5" y="17" width="2" height="1"></rect>
-                        <rect class="fill" x="11" y="17" width="2" height="1"></rect>
-                        <rect class="fill" x="17" y="12" width="2" height="1"></rect>
-                        <rect class="stroke" x="1" y="4" width="22" height="18"></rect>
-                        <line class="stroke" x1="17" y1="4" x2="17" y2="1"></line>
-                        <line class="stroke" x1="7" y1="4" x2="7" y2="1"></line>
-                        <line class="stroke" x1="1" y1="8" x2="23" y2="8"></line>
+            <button class='filter-tray-button' data-name='more'>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="icon">
+                    <circle class="stroke" cx="12" cy="12" r="2"></circle>
+                    <circle class="stroke" cx="3" cy="12" r="2"></circle>
+                    <circle class="stroke" cx="21" cy="12" r="2"></circle>
                 </svg>
-                <span class='tray-text'>Date</span>
+                <span class='tray-text'>More</span>
             </button>
         </div>
         <fieldset class='filters' form='news-form'>
-            <p class='group-title'>Filter Search</p>
             <div role='group' class='filter-group' data-name='language'>
+                <p class='group-title'>Filter Search</p>
                 <label for="select-language">Language</label>
                 <select name="language" id="select-language">
                     <option value="any">Any</option>
@@ -104,13 +93,16 @@
                     <option value="any">Any</option>
                 </select>
             </div>
-            <p class='group-title'>Select Date Range</p>
-            <div role='group' class='filter-group' data-name='date'>
+            <div role='group' class='filter-group' data-name='more'>
+                <p class='group-title'>Select Date Range</p>
                 <label for="select-date-start">Date Start</label>
                 <input type="date" name="datePicker" id="select-date-start" />
                 <label for="select-date-end">Date End</label>
                 <input type="date" name="datePicker" id="select-date-end" />
                 <button id='filter-date-apply'>Apply Date Range</button>
+                <p class='group-title'>Toggle Theme</p>
+                <input type="checkbox" name="theme" id="select-theme" />
+                <label for="select-theme" title="Select a theme"></label>
             </div>
         </fieldset>
     </aside>
@@ -120,6 +112,6 @@
         <button type='button' id='news-next'>Next Page</button>
         <div id='news-current-page'>1</div>
     </footer>
-    <script type="module" src="js/index.js"></script>
+    <script type="module" src="scripts/index.js"></script>
 </body>
 </html>

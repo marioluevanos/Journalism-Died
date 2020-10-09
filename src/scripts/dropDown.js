@@ -16,7 +16,6 @@ export function appendDropDownOptions (selector, list) {
         // Create an Array from the object, 
         // with position zero[0] as key and position one[1] as value
         const entries = Object.entries(list);
-
         // Destructure the params within the arguments
         entries.forEach(([key, value]) => {
             el.innerHTML += `<option value=${ value }>${ toTitleCase(key) }</option>`;

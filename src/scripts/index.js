@@ -6,6 +6,7 @@ import { initLanguageChange } from './language.js';
 import { initRegionChange } from './region.js';
 import { initDateChange } from './date.js';
 import { initFilters } from './filters.js';
+import { initTheme } from './theme.js';
 
 /**
  * Initializes data for (categories, region, lang) which will occupy dropdowns
@@ -45,6 +46,7 @@ async function startApp () {
     initLanguageChange();
     initRegionChange();
     initDateChange();
+    initTheme();
 }
 
 startApp();

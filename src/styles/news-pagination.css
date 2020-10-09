@@ -8,7 +8,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 15px;
-    padding: 30px calc(var(--ui-gutter) + var(--ui-filters-width)) 120px var(--ui-gutter);
+    padding: 30px calc(var(--ui-gutter) + var(--ui-filters-width)) 30px var(--ui-gutter);
     transition: opacity 0.3s ease;
 }
 
@@ -18,7 +18,7 @@
     border: 1px solid transparent;
     border-radius: 10px;
     background: var(--color-primary-light);
-    color: black;
+    color: var(--color-text);
     cursor: pointer;
     outline: none;
     white-space: nowrap;
@@ -40,15 +40,15 @@
 
 .news-pagination button[disabled] {
     background: transparent;
-    border: 1px dotted lightgray;
-    color: lightgray;
+    border: 1px dotted var(--color-border-ui);
+    color: var(--color-border-ui);
     cursor: default;
 }
 
 #news-current-page {
     overflow: hidden;
     padding: 15px;
-    color: black;
+    color: var(--color-text);
     grid-column: span 2;
     text-align: center;
     font-size: x-small;

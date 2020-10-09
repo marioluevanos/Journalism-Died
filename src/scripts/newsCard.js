@@ -79,13 +79,15 @@ function createNewsText ({
     const newsTitle = createNewsTitle({ title, url });
     const newsDesc = create('p');
     const newsFooter = createNewsFooter({ author, url });
-    
+    const descText = removeHTMLTags(description);
+
+    // Add data & text
+    newsDesc.innerHTML = descText;
+
     // Add classes
+    newsText.classList.toggle('no-desc', !descText);
     newsText.classList.add('news-text');
     newsDesc.classList.add('news-desc');
-    
-    // Add data & text
-    newsDesc.innerHTML = removeHTMLTags(description);
 
     const hasImage = image !== 'None';
     if (!hasImage) {
@@ -129,7 +131,7 @@ function createNewsMeta (categoriesList, published) {
 
     separator.innerText = '•';
     newsPubDate.innerText = pubDate;    
-
+    
     // Remove categories that are not in the dropdown
     const filteredCat = categoriesList.filter((catText) => {
         if (window.currentsAPI.categories.includes(catText)) {
@@ -139,6 +141,7 @@ function createNewsMeta (categoriesList, published) {
 
     // Create categories elemenes for each category and attach a click event listener
     filteredCat.map((catText) => {
+        
         const category = create('a');
         category.innerText = `${catText}`;
         category.setAttribute('data-category', catText);
@@ -151,7 +154,7 @@ function createNewsMeta (categoriesList, published) {
     // After creating category elements, append them to the newsCategory parent element
     .forEach((category, idx) => {
         newsCategory.appendChild(category);
-        const lastEl = categoriesList.length - 1 === idx;
+        const lastEl = filteredCat.length - 1 === idx;
         if(!lastEl) {
             newsCategory.innerHTML += `<span class="separator">•</span>`;
         }
