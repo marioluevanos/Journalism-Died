@@ -23,6 +23,8 @@ export function updatePageUI (data, url) {
  * @param {String} url The URL that was fetched
  */
 function appendData () {
+    
+    // If there are not search results
     if (store.data.news.length === 0) {
         return searchNotFound();
     } else {
@@ -38,6 +40,7 @@ function appendData () {
     //Pass the search info to the pagination buttons
     updatePagination(store.data, store.url);
 
+    // Remove the style attribute to show the element again (removes opacity)
     newsResults.removeAttribute('style');
 }
 
@@ -50,7 +53,6 @@ function onTransitionEnd (event) {
 };
 
 function searchNotFound() {
-    newsResults.innerHTML = '<h2 style="margin-bottom: 30px;">Nothing found.</h2>';
     const goBack = document.createElement('a');
     goBack.innerText = 'Go Back';
     goBack.href = '#';
@@ -60,6 +62,7 @@ function searchNotFound() {
         const data = await fetchData(url);
         updatePageUI(data, url);
     });
+    newsResults.innerHTML = '<h2 style="margin-bottom: 30px;">Nothing found.</h2>';
     newsResults.appendChild(goBack);
     newsResults.style.cssText = 'text-align: center; padding: 30px; opacity: 1;';
 }

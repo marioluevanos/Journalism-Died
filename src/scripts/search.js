@@ -36,8 +36,7 @@ async function onSearchClick (event) {
     if(event) {
         event.preventDefault();
     }
-
-    // Create the url, first
+    
     // Send value for each of the search input fields
     const url = buildUrl({
         keywordsVal: keywords.value,
