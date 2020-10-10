@@ -44,8 +44,8 @@ export function updatePagination(data, url) {
 async function paginatePage(event) {
     const { page, url } = event.target.dataset;
     const newUrl = `${ url }&page_number=${page}`;
-    const data = await fetchData(newUrl);
-    updatePageUI(data, newUrl)
+    const response = await fetchData({ fetchUrl: newUrl });
+    updatePageUI(response.data, response.url)
 }
 
 next.addEventListener('click', paginatePage);

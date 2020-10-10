@@ -52,17 +52,6 @@
     While Page is Loading
 */
 
-body.is-loading .news-loading {
+.is-loading .news-loading {
     opacity: 1;
 }
-
-/*
-    Media Queries
-*/
-
-/* @media only screen and (max-width: 767px) {   
-    .news-loading {
-        width: 32px;
-        height: 32px;
-    }
-} */

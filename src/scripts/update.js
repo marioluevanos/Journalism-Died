@@ -3,16 +3,15 @@ import { updatePagination } from './pagination.js';
 import { buildUrl, fetchData } from './api.js';
 
 const newsResults = document.getElementById('news-results');
-const store = {};
+let store = {};
 
 /**
  * Updates the page when new data has been received
  * @param {Object} data The response data
  * @param {String} url The URL that was fetched
  */
-export function updatePageUI (data, url) {
-    store.data = data;
-    store.url = url;
+export function updatePageUI (data = { news: [] }, url = '' ) {
+    store = { data, url };
     newsResults.style.opacity = 0;
     newsResults.addEventListener('transitionend', onTransitionEnd);
 }
@@ -58,8 +57,7 @@ function searchNotFound() {
     goBack.href = '#';
     goBack.addEventListener('click', async (e) => {
         e.preventDefault();
-        const url = buildUrl();
-        const data = await fetchData(url);
+        const { data, url } = await fetchData({ latestNews: true });
         updatePageUI(data, url);
     });
     newsResults.innerHTML = '<h2 style="margin-bottom: 30px;">Nothing found.</h2>';

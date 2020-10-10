@@ -1,4 +1,4 @@
-import { onCategoryClick } from './category.js';
+import { onCategoryTagClick } from './category.js';
 
 /**
  * A map function that gets applied over every iteration
@@ -143,7 +143,7 @@ function createNewsMeta (categoriesList, published) {
         }
     })
     // Limit to display only 2 categories
-    .filter((catText, idx) => idx >= 2 && catText);
+    .filter((catText, idx) => idx <= 1 && catText);
 
     // Create categories elemenes for each category and attach a click event listener
     filteredCat.map((catText) => {
@@ -153,7 +153,7 @@ function createNewsMeta (categoriesList, published) {
         category.setAttribute('data-category', catText);
         category.setAttribute('href', '#');
         category.classList.add('news-category', 'underline');
-        category.addEventListener('click', onCategoryClick);
+        category.addEventListener('click', onCategoryTagClick);
         return category;
     })
 

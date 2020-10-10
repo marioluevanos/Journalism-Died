@@ -9,7 +9,7 @@
     grid-template-columns: 1fr 1fr;
     grid-gap: 15px;
     padding: 30px calc(var(--ui-gutter) + var(--ui-filters-width)) 30px var(--ui-gutter);
-    transition: opacity 0.3s ease;
+    transition: opacity 0.6s ease;
 }
 
 .news-pagination button {
@@ -59,10 +59,10 @@
 }
 
 /*
-    Whhile Page is Loading
+    While Page is Loading
 */
 
-body.is-loading .news-pagination {
+.is-loading .news-pagination {
     opacity: 0;
 }
 

@@ -1,9 +1,8 @@
 const themeCheckbox = document.getElementById('select-theme');
-const keyName = 'theme';
 const themeClassName = 'is-dark-mode';
 
 /**
- * Initialize the change events for the region filters
+ * Initialize the change events for the theme
  */
 export function initTheme() {
     themeCheckbox.addEventListener('change', onChange);
@@ -11,12 +10,12 @@ export function initTheme() {
 }
 
 /**
- * Update the page when the region has changed
+ * Event to handle theme change
  */
 function onChange (event) {
     const { checked } = event.target;
     toggleTheme(checked);
-    localStorage.setItem(keyName, checked);
+    localStorage.setItem(themeClassName, checked);
 }
 
 /**
@@ -31,7 +30,7 @@ function toggleTheme(bool) {
  * Runs once the page has loaded, sets the theme, to dark or light
  */
 function loadTheme() {
-    const isDark = JSON.parse(localStorage.getItem(keyName));
+    const isDark = JSON.parse(localStorage.getItem(themeClassName));
     toggleTheme(isDark);
     themeCheckbox.checked = isDark;
 }
