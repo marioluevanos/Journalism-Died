@@ -18,6 +18,9 @@ export function createNewsCard (data) {
 
     news.classList.add('news');
     news.appendChild(newsText);
+    
+    // For a scroll-into-view animation
+    animateIntoView(news);
     return news;
 }
 
@@ -51,9 +54,9 @@ function createNewsFooter({ author, url }) {
     const newsLink = createNewsLink({ url });
     const icon = createIconExternal();
 
-    if (author) {
+    if(removeURLs(author)) {
         const newsAuthor = create('div');
-        const authors = removeHTMLTags(author).split(',').filter(Boolean).map(a => `${ a }<br>`).join('').trim();
+        const authors = cleanUpAuthors(author);
         newsAuthor.innerHTML = `By ${ authors }`;
         newsAuthor.classList.add('news-author');
         newsFooter.appendChild(newsAuthor);
@@ -83,7 +86,7 @@ function createNewsText ({
     const descText = removeHTMLTags(description);
 
     // Add data & text
-    newsDesc.innerHTML = descText;
+    newsDesc.innerHTML = removeURLs(descText);
 
     // Add classes
     newsText.classList.toggle('no-desc', !descText);
@@ -138,7 +141,9 @@ function createNewsMeta (categoriesList, published) {
         if (window.currentsAPI.categories.includes(catText)) {
             return catText;
         }
-    });
+    })
+    // Limit to display only 2 categories
+    .filter((catText, idx) => idx >= 2 && catText);
 
     // Create categories elemenes for each category and attach a click event listener
     filteredCat.map((catText) => {
@@ -187,11 +192,51 @@ function createIconExternal() {
 }
 
 /**
+ * Authors are in different formats. This is a way to clean up the authors by removing HTML and unnecessary entities.
+ * Limits authors to first three.
+ * @param {String} author
+ * @return {String} 
+ */
+function cleanUpAuthors(author) {
+    return removeHTMLTags(parseJSON(author))
+    .split(',')
+    // Remove any false values
+    .filter(Boolean)
+    // Creates a break between author names
+    .map((a, idx, src) => `${ a }${ src.length > 1 && idx >= 0 && idx < src.length - 1 ? ",<br>" : "" }`)
+    // Only keep the first three authors
+    .slice(0, 3)
+    .join('')
+    .trim();
+}
+
+/**
+ * Removes HTML from the payload (which is not needed)
  * @param {String} html Any string containing HTML tags
  * @return {String} HTML tags removed from a string
  */
 function removeHTMLTags (html = '') {
     return html.replace(/(<([^>]+)>)|(\\n)/gmi, '');
+}
+
+/**
+ * Data is sometimes sending back JSON as the author
+ * This check if the payload is JSON and checks and returns the name prop
+ */
+function parseJSON (json = '') {
+    if(json.match(/(^\[{)|(}\]$)/g)) {
+        const j = JSON.parse(json)[0];
+        return !j ? '' : j.name;
+    } else {
+        return json
+    }
+}
+
+/**
+ * Remove any URLs from the payload
+ */
+function removeURLs(text = '') {
+    return text.replace(/@?https?:\/\/|(www.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/igm, '');
 }
 
 /**
@@ -261,3 +306,29 @@ function timeAgo (time) {
         timeTemplate('years', years)
     ) + timeTemplates.suffix;
 };
+
+/**
+ * Intersection Obsever to create an animation when scrolled into the screen
+ * @param {HTMLElement} target
+ */
+function animateIntoView(target) {
+    let options = {
+        rootMargin: '0px',
+        threshold: [0, 0.5, 1]
+    };
+    let callback = (entries) => {
+        entries.forEach((entry) => {
+            const ratio = entry.intersectionRatio;
+            const { top } = entry.boundingClientRect;
+            const shouldAppear = ratio > 0.5 && top >= 0;
+            const shouldHide = ratio === 0 && top >= 0;
+            if (shouldAppear) {
+                entry.target.classList.add('is-visible');
+            } else if (shouldHide) {
+                entry.target.classList.remove('is-visible');
+            }
+        });
+    };
+    let observer = new IntersectionObserver(callback, options);
+    observer.observe(target);
+}

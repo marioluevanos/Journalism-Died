@@ -122,6 +122,7 @@
     color: var(--color-text-light);
     line-height: 1.5;
     margin-bottom: 15px;
+    word-break: break-word;
 }
 
 .news-desc:empty {
@@ -177,6 +178,19 @@
     transform: translate3d(3px, -3px, 0);
 }
 
+/* Intersection Observer class state */
+.news {
+    transition: opacity 0.3s ease-out, transform 0.6s ease-out;
+    transform: scale(0.975);
+    transform-origin: 50% 100%;
+    opacity: 0;
+}
+
+.news.is-visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
 /*
     Media Query
 */
@@ -186,6 +200,7 @@
         margin-bottom: 20px;
         padding-bottom: 20px;
     }
+
     /* Hero News Card */
     .news.has-image:nth-child(-n + 2) {
         flex-direction: column;

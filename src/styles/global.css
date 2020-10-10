@@ -102,7 +102,7 @@ svg.icon .stroke {
     text-decoration: none;
     text-decoration: none;
     display: inline;
-    background-image: linear-gradient(to bottom, black 0%, black 100%);
+    background-image: linear-gradient(to bottom, var(--color-text) 0%, var(--color-text) 100%);
     background-position: 100% 100%;
     background-repeat: no-repeat;
     background-size: 0% 1px;
