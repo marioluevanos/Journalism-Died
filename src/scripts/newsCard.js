@@ -33,6 +33,8 @@ function createNewsImage ({ url, image, title }) {
     newsPicture.setAttribute('src', image);
     newsPicture.setAttribute('alt', title);
     newsPicture.setAttribute('loading', 'lazy');
+    newsPicture.setAttribute('width', '1200');
+    newsPicture.setAttribute('height', '675');
     
     newsLink.appendChild(newsPicture);
     newsImage.appendChild(newsLink);

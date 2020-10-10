@@ -15,7 +15,7 @@
     },
     "headers": [
         {
-            "source": "**",
+            "source": "**/*.@(eot|otf|ttf|ttc|woff|font.css)",
             "headers": [
                 {
                     "key": "Access-Control-Allow-Origin",
@@ -24,47 +24,20 @@
             ]
         },
         {
-            "source": "**/*.html",
+            "source": "**/*.@(js|css)",
             "headers": [
                 {
                     "key": "Cache-Control",
-                    "value": "no-cache"
+                    "value": "max-age=604800"
                 }
             ]
         },
         {
-            "source": "**/*.@(jpg|jpeg|gif|png|svg|ico|webp)",
+            "source": "**/*.@(jpg|jpeg|gif|png)",
             "headers": [
                 {
                     "key": "Cache-Control",
-                    "value": "max-age=31536000"
-                }
-            ]
-        },
-        {
-            "source": "**/*.@(woff2|woff|eot|ttf)",
-            "headers": [
-                {
-                    "key": "Cache-Control",
-                    "value": "max-age=31536000"
-                }
-            ]
-        },
-        {
-            "source": "*/*.@(js|css|json)",
-            "headers": [
-                {
-                    "key": "Cache-Control",
-                    "value": "max-age=31536000"
-                }
-            ]
-        },
-        {
-            "source": "manifest.json",
-            "headers": [
-                {
-                    "key": "Cache-Control",
-                    "value": "max-age=7200"
+                    "value": "max-age=604800"
                 }
             ]
         }
