@@ -1,0 +1,15 @@
+{
+  "name": "Current News",
+  "short_name": "CN",
+  "description": "Real time news from different news sources all over the world.",
+  "icons": [
+    {
+      "source": "https://reddit-test-420.web.app/favicon.ico"
+    }
+  ],
+  "start_url": "https://reddit-test-420.web.app/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0b78d0",
+  "lang": "en-US"
+}

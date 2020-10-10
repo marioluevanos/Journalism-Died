@@ -3,6 +3,7 @@ import { updatePageUI } from './update.js';
 
 // Cache Elements
 const newsTitle = document.querySelector('h1');
+const newsResults = document.getElementById('news-results');
 const keywords = document.getElementById('keywords');
 const searchForm = document.getElementById('news-form');
 const searchButton = document.getElementById('search-button');
@@ -39,6 +40,10 @@ function onSearchBlur () {
 }
 
 function onTitleClick() {
+    const half = window.scrollY / 2;
+    const diff = window.scrollY > half ? window.innerHeight : 0;
+    const percent = (window.scrollY + diff) / (document.body.clientHeight);
+    const timeout = 1000 * percent;
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -46,5 +51,5 @@ function onTitleClick() {
     setTimeout(async () => {
         const { data, url } = await fetchData({ latestNews: true });
         updatePageUI(data, url);
-    }, 1000);
+    }, timeout);
 }

@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600&display=swap');
 
 :root {
-    --color-text: black;
-    --color-body: white;
-    --color-text-light: gray;
-    --color-border-ui: lightgray;
-    --color-primary: #0b78d0;
-    --color-primary-light: #dce6ef;
+    --color-text: hsl(0, 0%, 0%);
+    --color-text-light: hsl(0, 0%, 45%);
+    --color-body: hsl(0, 0%, 100%);
+    --color-body-dim: hsl(0, 0%, 95%);
+    --color-border-ui: hsl(0, 0%, 83%);
+    --color-primary: hsl(207, 90%, 43%);
+    --color-primary-light: hsl(208, 37%, 90%);
 
     --ui-filters-width: 80px;
     --ui-gutter: 5%;
@@ -97,9 +98,8 @@ svg.icon .stroke {
     Link Style
 */
 
-.underline {
+a.underline {
     display: block;
-    text-decoration: none;
     text-decoration: none;
     display: inline;
     background-image: linear-gradient(to bottom, var(--color-text) 0%, var(--color-text) 100%);
@@ -109,11 +109,15 @@ svg.icon .stroke {
     transition: background-size 0.3s ease 0s;
 }
 
-.underline:hover {
+a.underline:hover {
     text-decoration: none;
     background-position: 0 100%;
     background-size: 100% 1px;
     transition: background-size 0.3s ease 0s;
+}
+
+a.underline:visited {
+    text-decoration: line-through;
 }
 
 @media only screen and (max-width: 767px) {
