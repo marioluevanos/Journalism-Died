@@ -1,16 +1,72 @@
 {
-  "hosting": {
-    "public": "src",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
+    "hosting": {
+        "public": "src",
+        "ignore": [
+            "firebase.json",
+            "**/.*",
+            "**/node_modules/**"
+        ],
+        "rewrites": [
+            {
+                "source": "**",
+                "destination": "/index.html"
+            }
+        ]
+    },
+    "headers": [
+        {
+            "source": "**",
+            "headers": [
+                {
+                    "key": "Access-Control-Allow-Origin",
+                    "value": "*"
+                }
+            ]
+        },
+        {
+            "source": "**/*.html",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "no-cache"
+                }
+            ]
+        },
+        {
+            "source": "**/*.@(jpg|jpeg|gif|png|svg|ico|webp)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "max-age=31536000"
+                }
+            ]
+        },
+        {
+            "source": "**/*.@(woff2|woff|eot|ttf)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "max-age=31536000"
+                }
+            ]
+        },
+        {
+            "source": "*/*.@(js|css|json)",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "max-age=31536000"
+                }
+            ]
+        },
+        {
+            "source": "manifest.json",
+            "headers": [
+                {
+                    "key": "Cache-Control",
+                    "value": "max-age=7200"
+                }
+            ]
+        }
     ]
-  }
 }
