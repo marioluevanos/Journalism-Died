@@ -16,7 +16,6 @@ export function updatePagination(data, url) {
     current.innerText = data.page;
 
     // Attach the pagination data to the buttons, for previons and next
-
     // Prev Button
     const prevPage = data.page - 1;
     if (prevPage > 0) {
@@ -28,7 +27,7 @@ export function updatePagination(data, url) {
 
     // Next Button
     const nextPage = data.page + 1;
-    next.setAttribute('data-url', url);
+    next.setAttribute('data-page', nextPage);
 }
 
 /**

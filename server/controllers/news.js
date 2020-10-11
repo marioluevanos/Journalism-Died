@@ -38,7 +38,7 @@ exports.search = async function (req, res) {
     if(page_number) {
         url += `&page_number=${ page_number }`;
     }
-    
+
     const response = await fetch(url).catch(e => console.log(e));
 
     res.send({ ...response.data });
@@ -58,7 +58,7 @@ exports.latest = async function (req, res) {
     if(page_number) {
         url += `&page_number=${ page_number }`;
     }
-    console.log(url)
+
     const response = await fetch(url).catch(e => console.log(e));
 
     res.send({ ...response.data });

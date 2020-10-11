@@ -1,5 +1,5 @@
 const isDev = window.location.hostname === '127.0.0.1';
-const BASE_URL = 'https://us-central1-journalism-died.cloudfunctions.net/api';
+const BASE_URL = isDev ? 'http://localhost:5001/journalism-died/us-central1/api' : 'https://us-central1-journalism-died.cloudfunctions.net/api';
 const htmlEl = document.documentElement;
 const newsResults = document.getElementById('news-results');
 const keywordsEl = document.getElementById('keywords');
