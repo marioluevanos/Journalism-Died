@@ -90,3 +90,16 @@ export function updateTrayText({ language, region }) {
         regionTrayText.innerText = regionText === 'Any' ? 'Region' : regionText;
     }
 }
+
+/**
+ * Load once and set previous filter preference
+ * @param {String} keyName
+ * @param {HTMLSelectElement} el
+ */
+export function loadStoredFilter(keyName, el) {
+    const storedLang = localStorage.getItem(keyName);
+    if(storedLang) {
+        el.value = storedLang;
+        updateTrayText({ [keyName]: el });
+    }
+}

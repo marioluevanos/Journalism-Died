@@ -1,14 +1,19 @@
 import { updatePageUI } from './update.js';
 import { fetchData } from './api.js';
-import { closeAllFilters, updateTrayText } from './filters.js';
+import {
+    closeAllFilters,
+    updateTrayText,
+    loadStoredFilter
+} from './filters.js';
 
-const regions = document.getElementById('select-region');
+const regionsEl = document.getElementById('select-region');
 
 /**
  * Initialize the change events for the region filters
  */
 export function initRegionChange() {
-    regions.addEventListener('change', onChange);
+    regionsEl.addEventListener('change', onChange);
+    loadStoredFilter('region', regionsEl);
 }
 
 // Update the page when the region has changed
@@ -19,4 +24,7 @@ async function onChange (event) {
     updatePageUI(data, url);
     updateTrayText({ region: event.target });
     closeAllFilters();
+
+    // Save to local storage
+    localStorage.setItem('region', event.target.value);
 }

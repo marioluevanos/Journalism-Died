@@ -1,6 +1,10 @@
 import { updatePageUI } from './update.js';
 import { fetchData } from './api.js';
-import { closeAllFilters, updateTrayText } from './filters.js';
+import { 
+    closeAllFilters, 
+    updateTrayText, 
+    loadStoredFilter
+} from './filters.js';
 
 const languageEl = document.getElementById('select-language');
 
@@ -9,7 +13,7 @@ const languageEl = document.getElementById('select-language');
  */
 export function initLanguageChange() {
     languageEl.addEventListener('change', onChange);
-    loadStoredLanguage()
+    loadStoredFilter('language', languageEl);
 }
 
 async function onChange (event) {
@@ -27,16 +31,5 @@ async function onChange (event) {
     // Set the lang on the HTML element
     if (lang !== 'any') {
         document.documentElement.setAttribute('lang', lang);
-    }
-}
-
-/**
- * Load once and set previous languange preference
- */
-function loadStoredLanguage() {
-    const storedLang = localStorage.getItem('language');
-    if(storedLang) {
-        languageEl.value = storedLang;
-        updateTrayText({ language: languageEl });
     }
 }

@@ -1,3 +1,4 @@
+const isDev = window.location.hostname === '127.0.0.1';
 const BASE_URL = 'https://us-central1-journalism-died.cloudfunctions.net/api';
 const htmlEl = document.documentElement;
 const newsResults = document.getElementById('news-results');
@@ -7,7 +8,6 @@ const regionEl = document.getElementById('select-region');
 const categoriesEl = document.getElementById('select-categories');
 const startDateEl = document.getElementById('select-date-start');
 const endDateEl = document.getElementById('select-date-end');
-const isDev = window.location.hostname === '127.0.0.1';
 
 /**
  * @param {Boolean} latestNews If true, fetch the latest news.
@@ -94,7 +94,7 @@ export function buildUrl ({ latestNews } = {}) {
     const isCategory = categoriesEl.value !== 'any';
     const isStartDate = startDateEl.value !== '';
     const isEndDate = endDateEl.value !== '';
-    // const isAllBlank = !isKeyword && !isLanguage && !isRegion && !isCategory && !isStartDate && !isEndDate;
+    const isAllBlank = !isKeyword && !isLanguage && !isRegion && !isCategory && !isStartDate && !isEndDate;
 
     // Contruct the base url
     let searchUrl = `${ BASE_URL }/search?`;
@@ -117,14 +117,12 @@ export function buildUrl ({ latestNews } = {}) {
     if(isEndDate) {
         searchUrl += `&end_date=${ endDateEl.value }`;
     }
-    if(latestNews || categoriesEl.value === 'any') {
+    if(latestNews || !isKeyword && isLanguage || isAllBlank) {
         // If they are all blank, use default search string
         searchUrl = `${ BASE_URL }/latest`;
         if(isLanguage) {
             searchUrl += `?language=${ languageEl.value }`;
         }
-    }
-    if (latestNews) {
         resetSearchValues();
     }
     return searchUrl;

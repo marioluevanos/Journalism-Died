@@ -1,20 +1,25 @@
 import { updatePageUI } from './update.js';
 import { fetchData } from './api.js';
+import { loadStoredFilter } from './filters.js';
 
-const categories = document.getElementById('select-categories');
+const categoriesEl = document.getElementById('select-categories');
 
 /**
  * Change handler for category, also sends a new request for data and updates UI
  */
 export function initCategoryChange () {
-    categories.addEventListener('change', onChange);
+    categoriesEl.addEventListener('change', onChange);
+    loadStoredFilter('category', categoriesEl);
 }
 
-async function onChange () {
+async function onChange (event) {
     const { data, url } = await fetchData();
 
     // Update the page results
     updatePageUI(data, url);
+
+    // Save to local storage
+    localStorage.setItem('category', event.target.value);
 }
 
 /**
@@ -27,8 +32,11 @@ export async function onCategoryTagClick (event) {
     const { data, url } = await fetchData();
 
     // Update the category selector
-    categories.value = category;
+    categoriesEl.value = category;
 
     // Update the page results
-    updatePageUI(data, url);   
+    updatePageUI(data, url); 
+    
+    // Save to local storage
+    localStorage.setItem('category', category);
 }
