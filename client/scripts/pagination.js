@@ -11,8 +11,7 @@ const current = document.getElementById('news-current-page');
  * @param {String} url The URL that was fetched
  */
 export function updatePagination(data, url) {
-    
-    console.log(url);
+
     // Set current page
     current.innerText = data.page;
 
