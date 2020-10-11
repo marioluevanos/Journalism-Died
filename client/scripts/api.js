@@ -1,5 +1,4 @@
-const BASE_URL = 'https://api.currentsapi.services/v1';
-const KEY = '7yVfJqcqsh1Mba0eBKq9X26k4D6eEnWLwt9bAgSkFyzB5xhH';
+const BASE_URL = 'https://us-central1-journalism-died.cloudfunctions.net/api';
 const htmlEl = document.documentElement;
 const newsResults = document.getElementById('news-results');
 const keywordsEl = document.getElementById('keywords');
@@ -25,8 +24,9 @@ export async function fetchData ({ latestNews, fetchUrl } = {}) {
     htmlEl.classList.add('is-loading');
 
     if(isDev) {
-        if(localStorage.getItem(url)) {
-            newsData = JSON.parse(localStorage.getItem(url));
+        const storedData = localStorage.getItem(url);
+        if(storedData) {
+            newsData = JSON.parse(storedData);
             
             // Remove the loading screen
             htmlEl.classList.remove('is-loading');
@@ -64,11 +64,16 @@ export async function fetchData ({ latestNews, fetchUrl } = {}) {
  * @returns {Array | Object} The dropdown values
  */
 export async function fetchDropDown (name = '') {
-    if(localStorage.getItem(name)) {
-        return JSON.parse(localStorage.getItem(name));
+
+    // In case third party cookies or whatever is denied by the user
+    if (window.localStorage) {
+        const storedData = localStorage.getItem(name);
+        if(storedData) {
+            return JSON.parse(storedData);
+        }
     }
-    // from Currents API Endpoint docs
-    const url = `${ BASE_URL }/available/${ name }?apiKey=${ KEY }`;
+
+    const url = `${ BASE_URL }/filters?name=${ name }`;
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -89,10 +94,10 @@ export function buildUrl ({ latestNews } = {}) {
     const isCategory = categoriesEl.value !== 'any';
     const isStartDate = startDateEl.value !== '';
     const isEndDate = endDateEl.value !== '';
-    const isAllBlank = !isKeyword && !isLanguage && !isRegion && !isCategory && !isStartDate && !isEndDate;
+    // const isAllBlank = !isKeyword && !isLanguage && !isRegion && !isCategory && !isStartDate && !isEndDate;
 
     // Contruct the base url
-    let searchUrl = `${ BASE_URL }/search?&apiKey=${ KEY }`;
+    let searchUrl = `${ BASE_URL }/search?`;
 
     if(isKeyword) {
         searchUrl += `&keywords=${ keywordsEl.value }`;
@@ -112,9 +117,12 @@ export function buildUrl ({ latestNews } = {}) {
     if(isEndDate) {
         searchUrl += `&end_date=${ endDateEl.value }`;
     }
-    if(isAllBlank || latestNews) {
+    if(latestNews || categoriesEl.value === 'any') {
         // If they are all blank, use default search string
-        searchUrl = `${ BASE_URL }/latest-news?apiKey=${ KEY }`;
+        searchUrl = `${ BASE_URL }/latest`;
+        if(isLanguage) {
+            searchUrl += `?language=${ languageEl.value }`;
+        }
     }
     if (latestNews) {
         resetSearchValues();

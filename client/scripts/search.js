@@ -3,7 +3,6 @@ import { updatePageUI } from './update.js';
 
 // Cache Elements
 const newsTitle = document.querySelector('h1');
-const newsResults = document.getElementById('news-results');
 const keywords = document.getElementById('keywords');
 const searchForm = document.getElementById('news-form');
 const searchButton = document.getElementById('search-button');

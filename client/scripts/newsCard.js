@@ -200,7 +200,12 @@ function createIconExternal() {
  * @return {String} 
  */
 function cleanUpAuthors(author) {
-    return removeHTMLTags(parseJSON(author))
+    
+    // "temp" parses any html entities that need to be removed
+    const temp = document.createElement('span');
+    temp.innerHTML = author;
+
+    const cleanedAuthor = removeHTMLTags(parseJSON(temp.innerText))
     .split(',')
     // Remove any false values
     .filter(Boolean)
@@ -210,6 +215,9 @@ function cleanUpAuthors(author) {
     .slice(0, 3)
     .join('')
     .trim();
+
+    temp.remove();
+    return cleanedAuthor;
 }
 
 /**

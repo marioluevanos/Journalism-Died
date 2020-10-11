@@ -40,13 +40,13 @@ async function startApp () {
     appendDropDownOptions("#select-region", regions);
 
     // Initialize the search modules and filters
-    initSearch();
     initFilters();
     initCategoryChange();
     initLanguageChange();
     initRegionChange();
     initDateChange();
     initTheme();
+    initSearch();
 }
 
 startApp();

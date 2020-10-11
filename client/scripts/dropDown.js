@@ -5,6 +5,8 @@
  */
 export function appendDropDownOptions (selector, list) {
     
+    if (!list || !selector) return;
+
     const el = document.querySelector(selector);
     // Check if the list is an Array (without named keys)
     if(list instanceof Array) {

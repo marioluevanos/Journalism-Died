@@ -71,6 +71,8 @@ export function closeAllFilters () {
 
 /**
  * Updates the tray text on a mobile device view
+ * @param {HTMLSelectElement} language
+ * @param {HTMLSelectElement} region
  */
 export function updateTrayText({ language, region }) {
     const [
