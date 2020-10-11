@@ -8,13 +8,13 @@ const categoriesEl = document.getElementById('select-categories');
  * Change handler for category, also sends a new request for data and updates UI
  */
 export function initCategoryChange () {
-    categoriesEl.addEventListener('change', onChange);
     loadStoredFilter('category', categoriesEl);
+    categoriesEl.addEventListener('change', onChange);
 }
 
 async function onChange (event) {
     const { data, url } = await fetchData();
-
+    
     // Update the page results
     updatePageUI(data, url);
 

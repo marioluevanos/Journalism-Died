@@ -26,6 +26,7 @@ export function initSearch () {
  */
 async function onSearchClick (event) {
     if(event) event.preventDefault();
+    
     const { data, url } = await fetchData();
     updatePageUI(data, url);
 }

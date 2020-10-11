@@ -1,6 +1,6 @@
 import { createNewsCard } from './newsCard.js';
 import { updatePagination } from './pagination.js';
-import { buildUrl, fetchData } from './api.js';
+import { fetchData } from './api.js';
 
 const newsResults = document.getElementById('news-results');
 let store = {};

@@ -5,7 +5,7 @@ const BASE_URL = 'https://api.currentsapi.services/v1';
 const KEY = process.env.API_KEY;
 
 exports.search = async function (req, res) {
-    let url = `${ BASE_URL }/search?&apiKey=${ KEY }`;
+    let url = `${ BASE_URL }/search?apiKey=${ KEY }`;
     
     const { 
         keywords,
@@ -58,7 +58,7 @@ exports.latest = async function (req, res) {
     if(page_number) {
         url += `&page_number=${ page_number }`;
     }
-
+    console.log(url)
     const response = await fetch(url).catch(e => console.log(e));
 
     res.send({ ...response.data });

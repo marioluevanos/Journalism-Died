@@ -11,14 +11,12 @@ const endDateEl = document.getElementById('select-date-end');
 
 /**
  * @param {Boolean} latestNews If true, fetch the latest news.
- * @param {String} fetchUrl Explicit fetch url to search, instead of building url
  * @return {Object} The data and the url searched
  */
-export async function fetchData ({ latestNews, fetchUrl } = {}) {
+export async function fetchData ({ latestNews, pageNumber } = {}) {
     
-    // Check if a fetchUrl has been passed, if not, build the url from the input values
-    const url = !fetchUrl ? buildUrl({ latestNews }) : fetchUrl;
     let newsData;
+    let url = buildUrl({ latestNews, pageNumber });
 
     // Add loading class
     htmlEl.classList.add('is-loading');
@@ -85,7 +83,12 @@ export async function fetchDropDown (name = '') {
     }
 }
 
-export function buildUrl ({ latestNews } = {}) {
+/**
+ * @param {Boolean} latestNews Explicitly get latest news
+ * @param {String} pageNumber Add a page-number to the url
+ * @return {String} The url to fetch
+ */
+export function buildUrl ({ latestNews, pageNumber } = {}) {
 
     // Check if the inputs have any user value
     const isKeyword = keywordsEl.value !== '';
@@ -95,37 +98,48 @@ export function buildUrl ({ latestNews } = {}) {
     const isStartDate = startDateEl.value !== '';
     const isEndDate = endDateEl.value !== '';
     const isAllBlank = !isKeyword && !isLanguage && !isRegion && !isCategory && !isStartDate && !isEndDate;
+    const isDefault = keywordsEl.value === '' && isLanguage && !isCategory;
 
     // Contruct the base url
     let searchUrl = `${ BASE_URL }/search?`;
 
     if(isKeyword) {
-        searchUrl += `&keywords=${ keywordsEl.value }`;
+        searchUrl += `keywords=${ keywordsEl.value }&`;
     }
     if(isLanguage) {
-        searchUrl += `&language=${ languageEl.value }`;
+        searchUrl += `language=${ languageEl.value }&`;
     }
     if(isRegion) {
-        searchUrl += `&country=${ regionEl.value }`;
+        searchUrl += `country=${ regionEl.value }&`;
     }
     if(isCategory) {
-        searchUrl += `&category=${ categoriesEl.value }`;
+        searchUrl += `category=${ categoriesEl.value }&`;
     }
     if(isStartDate) {
-        searchUrl += `&start_date=${ startDateEl.value }`;
+        searchUrl += `start_date=${ startDateEl.value }&`;
     }
     if(isEndDate) {
-        searchUrl += `&end_date=${ endDateEl.value }`;
+        searchUrl += `end_date=${ endDateEl.value }&`;
     }
-    if(latestNews || !isKeyword && isLanguage || isAllBlank) {
+    if(latestNews || isDefault || isAllBlank) {
+        
         // If they are all blank, use default search string
-        searchUrl = `${ BASE_URL }/latest`;
+        searchUrl = `${ BASE_URL }/latest?`;
+
         if(isLanguage) {
-            searchUrl += `?language=${ languageEl.value }`;
+            searchUrl += `language=${ languageEl.value }&`;
         }
-        resetSearchValues();
+
+        // Reset to latest news
+        if (latestNews) {
+            resetSearchValues();
+        }
     }
-    return searchUrl;
+    if (pageNumber) {
+        searchUrl += `page_number=${ pageNumber }&`
+    }
+
+    return searchUrl.replace(/\&$/g, '');
 }
 
 /**

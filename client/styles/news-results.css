@@ -27,6 +27,14 @@
 }
 
 /*
+    While Page is Loading
+*/
+
+.is-loading #news-results {
+    opacity: 0.66;
+}
+
+/*
     Active filters 
 */
 
