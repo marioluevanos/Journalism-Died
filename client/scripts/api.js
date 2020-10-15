@@ -1,5 +1,5 @@
-const isDev = window.location.hostname === '127.0.0.1';
-const BASE_URL = isDev ? 'http://localhost:5001/journalism-died/us-central1/api' : 'https://us-central1-journalism-died.cloudfunctions.net/api';
+import { state } from './state.js';
+
 const htmlEl = document.documentElement;
 const newsResults = document.getElementById('news-results');
 const keywordsEl = document.getElementById('keywords');
@@ -21,7 +21,7 @@ export async function fetchData ({ latestNews, pageNumber } = {}) {
     // Add loading class
     htmlEl.classList.add('is-loading');
 
-    if(isDev) {
+    if(state.IS_DEV) {
         const storedData = localStorage.getItem(url);
         if(storedData) {
             newsData = JSON.parse(storedData);
@@ -40,7 +40,7 @@ export async function fetchData ({ latestNews, pageNumber } = {}) {
         if(response.ok) {
             const data = await response.json();
             newsData = data;
-            if (isDev) localStorage.setItem(url, JSON.stringify(data));
+            if (state.IS_DEV) localStorage.setItem(url, JSON.stringify(data));
         } else {
             newsResults.innerHTML = '<h2 style="text-align: center">Something went wrong with the server.</h2>';
         }
@@ -61,7 +61,7 @@ export async function fetchData ({ latestNews, pageNumber } = {}) {
  * @param {String} name The name of the drop down to fetch
  * @returns {Array | Object} The dropdown values
  */
-export async function fetchDropDown (name = '') {
+export async function fetchFilterOptions (name = '') {
 
     // In case third party cookies or whatever is denied by the user
     if (window.localStorage) {
@@ -71,7 +71,7 @@ export async function fetchDropDown (name = '') {
         }
     }
 
-    const url = `${ BASE_URL }/filters?name=${ name }`;
+    const url = `${ state.BASE_URL }/filters?name=${ name }`;
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -101,7 +101,7 @@ export function buildUrl ({ latestNews, pageNumber } = {}) {
     const isDefault = keywordsEl.value === '' && isLanguage && !isCategory;
 
     // Contruct the base url
-    let searchUrl = `${ BASE_URL }/search?`;
+    let searchUrl = `${ state.BASE_URL }/search?`;
 
     if(isKeyword) {
         searchUrl += `keywords=${ keywordsEl.value }&`;
@@ -124,7 +124,7 @@ export function buildUrl ({ latestNews, pageNumber } = {}) {
     if(latestNews || isDefault || isAllBlank) {
         
         // If they are all blank, use default search string
-        searchUrl = `${ BASE_URL }/latest?`;
+        searchUrl = `${ state.BASE_URL }/latest?`;
 
         if(isLanguage) {
             searchUrl += `language=${ languageEl.value }&`;

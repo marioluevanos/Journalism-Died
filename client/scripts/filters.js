@@ -1,3 +1,6 @@
+import { fetchFilterOptions } from './api.js';
+import { state } from './state.js';
+
 // Cache Elements
 const newsResults = document.getElementById('news-results');
 const newsFilters = document.querySelector('.news-filters');
@@ -12,6 +15,7 @@ export function initFilters () {
     filterButton.addEventListener('click', toggleAsideFilters);
     filterTrayButtons.forEach(button => button.addEventListener('click', onTrayButtonClick));
     newsResults.addEventListener('click', closeAllFilters);
+    loadFilters();
 }
 
 /**
@@ -102,4 +106,80 @@ export function loadStoredFilter(keyName, el) {
         el.value = storedLang;
         updateTrayText({ [keyName]: el });
     }
+}
+
+/**
+ * Loads the category, language and regions filters from the API
+ */
+async function loadFilters() {
+    // Promise.all takes in an array of Promises, that run in parallel
+    // It returns the results when all 3 process are completed
+    const results = await Promise.all([
+        fetchFilterOptions('categories'),
+        fetchFilterOptions('languages'),
+        fetchFilterOptions('regions'),
+    ]);
+
+    // Destructure the array, in the same order they were called above
+    // So, first position would be the categories, etc.
+    const [
+        categories,
+        languages,
+        regions
+    ] = results;
+
+    state.categories = categories;
+    state.languages = languages;
+    state.regions = regions;
+
+    // Now that we have data for our DropDowns, 
+    // we can use the same function to append to each dropdown <select> element
+    appendFilterOptions("#select-categories", categories);
+    appendFilterOptions("#select-language", languages);
+    appendFilterOptions("#select-region", regions);
+}
+
+/**
+ * Loop through a list, then create and append an <option> element to it's selector
+ * @param {String} selector CSS Selector
+ * @param {Array | Object} list A list to interate and create an <option> element
+ */
+function appendFilterOptions (selector, list) {
+
+    if(!list || !selector) return;
+
+    const el = document.querySelector(selector);
+    // Check if the list is an Array (without named keys)
+    if(list instanceof Array) {
+        sortAlphabetically(list).forEach((item) => {
+            el.innerHTML += `<option value=${ item }>${ toTitleCase(item) }</option>`;
+        });
+    } else {
+        // If not an Array, then it's an Object with key, value pairs.
+        // Create an Array from the object, 
+        // with position zero[0] as key and position one[1] as value
+        const entries = Object.entries(list);
+        // Destructure the params within the arguments
+        entries.forEach(([key, value]) => {
+            el.innerHTML += `<option value=${ value }>${ toTitleCase(key) }</option>`;
+        });
+    }
+}
+
+/**
+ * @param {String} text Some text content
+ * @return {String} A text string that is title-cased ex: "Title Cased Example"
+ */
+function toTitleCase (text = '') {
+    return text
+        // make array of words
+        .split(' ')
+        // transform each first letter of word
+        .map(word => word.replace(/\w{1}/, match => match.toUpperCase()))
+        // join array words with space into string
+        .join(' ')
+}
+
+function sortAlphabetically (list) {
+    return list.sort((a, b) => b.toUpperCase() < a.toUpperCase() ? 1 : -1);
 }

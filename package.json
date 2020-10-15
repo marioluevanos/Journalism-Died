@@ -1,0 +1,20 @@
+{
+    "name": "journalism-died",
+    "version": "1.0.0",
+    "description": "A news aggregator with no frameworks and no build tools.",
+    "scripts": {
+        "dev": "cd client && http-server-spa ./ ./index.html 8080",
+        "serve": "cd client && firebase serve"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/marioluevanos/Journalism-Died.git"
+    },
+    "keywords": ["vanilla js"],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/marioluevanos/Journalism-Died/issues"
+    },
+    "homepage": "https://github.com/marioluevanos/Journalism-Died#readme"
+}

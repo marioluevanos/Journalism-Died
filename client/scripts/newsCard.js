@@ -1,4 +1,5 @@
 import { onCategoryTagClick } from './category.js';
+import { state } from './state.js';
 
 /**
  * A map function that gets applied over every iteration
@@ -47,7 +48,7 @@ function createNewsLink ({ url, title = '' }) {
     newsLink.setAttribute('href', url);
     newsLink.setAttribute('target', '_blank');
     newsLink.setAttribute('rel', 'noopener');
-    newsLink.innerText = title;
+    newsLink.innerHTML = title;
     return newsLink;
 }
 
@@ -140,7 +141,7 @@ function createNewsMeta (categoriesList, published) {
     
     // Remove categories that are not in the dropdown
     const filteredCat = categoriesList.filter((catText) => {
-        if (window.currentsAPI.categories.includes(catText)) {
+        if (state.categories.includes(catText)) {
             return catText;
         }
     })
