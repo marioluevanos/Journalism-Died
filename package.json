@@ -5,7 +5,8 @@
     "scripts": {
         "dev": "cd client && npm run dev",
         "serve": "cd client && firebase serve",
-        "deploy:client": "firebase deploy --only hosting"
+        "build:client": "cd client && npm run build",
+        "deploy:client": "firebase deploy --only hosting && cd client && rm -r dist"
     },
     "repository": {
         "type": "git",
