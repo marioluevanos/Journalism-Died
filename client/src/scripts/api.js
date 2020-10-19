@@ -14,46 +14,43 @@ const endDateEl = document.getElementById('select-date-end');
  * @return {Object} The data and the url searched
  */
 export async function fetchData ({ latestNews, pageNumber } = {}) {
-    
-    let newsData;
+
     let url = buildUrl({ latestNews, pageNumber });
 
     // Add loading class
     htmlEl.classList.add('is-loading');
 
-    if(state.IS_DEV) {
-        const storedData = localStorage.getItem(url);
-        if(storedData) {
-            newsData = JSON.parse(storedData);
+    // if(state.IS_DEV) {
+    //     const storedData = localStorage.getItem(url);
+    //     if(storedData) {
             
-            // Remove the loading screen
-            htmlEl.classList.remove('is-loading');
-            return {
-                data: newsData,
-                url
-            };
-        }
-    }
+    //         // Remove the loading screen
+    //         htmlEl.classList.remove('is-loading');
+
+    //         return {
+    //             data: JSON.parse(storedData),
+    //             url
+    //         };
+    //     }
+    // }
 
     try {
         const response = await fetch(url);
-        if(response.ok) {
-            const data = await response.json();
-            newsData = data;
-            if (state.IS_DEV) localStorage.setItem(url, JSON.stringify(data));
-        } else {
-            newsResults.innerHTML = '<h2 style="text-align: center">Something went wrong with the server.</h2>';
-        }
+        
+        if(!response.ok) postErrorMessage(response);
+        
+        const data = await response.json();
+        
+        // if(state.IS_DEV) localStorage.setItem(url, JSON.stringify(data));
+        
+        // Remove the loading class
+        htmlEl.classList.remove('is-loading');
+
+        return { data, url };
+
     } catch(error) {
         console.error(error);
     }
-    // Remove the loading class
-    htmlEl.classList.remove('is-loading');
-    
-    return {
-        data: newsData,
-        url
-    };
 }
 
 /**
@@ -151,4 +148,9 @@ function resetSearchValues() {
     regionEl.value = 'any';
     startDateEl.value = '';
     endDateEl.value = '';
+}
+
+function postErrorMessage(response) {
+    alert(JSON.stringify(response))
+    newsResults.innerHTML = '<br><h2 style="text-align: center">Something went wrong with the server.</h2>'
 }

@@ -11,11 +11,11 @@ const filterGroups = document.querySelectorAll('.filter-group');
 /**
  * Initialize the search and add search events
  */
-export function initFilters () {
+export async function initFilters () {
+    await loadFilters();
     filterButton.addEventListener('click', toggleAsideFilters);
     filterTrayButtons.forEach(button => button.addEventListener('click', onTrayButtonClick));
     newsResults.addEventListener('click', closeAllFilters);
-    loadFilters();
 }
 
 /**

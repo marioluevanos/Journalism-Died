@@ -12,7 +12,7 @@ import { initTheme } from './theme.js';
 async function startApp () {
 
     // Initialize
-    initFilters();
+    await initFilters();
     initCategoryChange();
     initLanguageChange();
     initRegionChange();

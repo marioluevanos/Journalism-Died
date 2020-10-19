@@ -3,8 +3,9 @@
     "version": "1.0.0",
     "description": "A news aggregator with no frameworks and no build tools.",
     "scripts": {
-        "dev": "cd client && http-server-spa ./ ./index.html 8080",
-        "serve": "cd client && firebase serve"
+        "dev": "cd client && npm run dev",
+        "serve": "cd client && firebase serve",
+        "deploy:client": "firebase deploy --only hosting"
     },
     "repository": {
         "type": "git",
