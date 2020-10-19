@@ -4,7 +4,7 @@
   "description": "Real time news from different news sources all over the world.",
   "icons": [
     {
-      "source": "https://journalismdied.com/favicon.ico"
+      "source": "https://journalismdied.com/images/favicon.ico"
     }
   ],
   "start_url": "https://journalismdied.com",
